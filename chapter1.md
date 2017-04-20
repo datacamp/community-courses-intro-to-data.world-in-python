@@ -80,7 +80,7 @@ import pprint as pp
 
 *** =sct
 ```{python}
-test_import("datadorworld", same_as = True)
+test_import("datadotworld", same_as = True)
 
 
 success_msg("Great work!")
