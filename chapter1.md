@@ -62,60 +62,26 @@ A dataset of movies, `movies`, is available in the workspace.
 
 *** =pre_exercise_code
 ```{python}
-import pandas as pd
-movies = pd.read_csv("http://s3.amazonaws.com/assets.datacamp.com/course/introduction_to_r/movies.csv")
 
-import numpy as np
 ```
 
 *** =sample_code
 ```{python}
-# Get integer values for genres
-_, ints = np.unique(movies.genre, return_inverse = True)
-
-# Import matplotlib.pyplot
-
-
-# Make a scatter plot: runtime on  x-axis, rating on y-axis and set c to ints
-
-
-# Show the plot
+import datadotworld as dw
+import pprint as pp
 
 ```
 
 *** =solution
 ```{python}
-# Get integer values for genres
-_, ints = np.unique(movies.genre, return_inverse = True)
-
-# Import matplotlib.pyplot
-import matplotlib.pyplot as plt
-
-# Make a scatter plot: runtime on  x-axis, rating on y-axis and set c to ints
-plt.scatter(movies.runtime, movies.rating, c=ints)
-
-# Show the plot
-plt.show()
+import datadotworld as dw
+import pprint as pp
 ```
 
 *** =sct
 ```{python}
-# SCT written with pythonwhat: https://github.com/datacamp/pythonwhat/wiki
+test_import("datadorworld", same_as = True)
 
-test_function("numpy.unique",
-              not_called_msg = "Don't remove the call of `np.unique` to define `ints`.",
-              incorrect_msg = "Don't change the call of `np.unique` to define `ints`.")
-
-test_object("ints",
-            undefined_msg = "Don't remove the definition of the predefined `ints` object.",
-            incorrect_msg = "Don't change the definition of the predefined `ints` object.")
-
-test_import("matplotlib.pyplot", same_as = True)
-
-test_function("matplotlib.pyplot.scatter",
-              incorrect_msg = "You didn't use `plt.scatter()` correctly, have another look at the instructions.")
-
-test_function("matplotlib.pyplot.show")
 
 success_msg("Great work!")
 ```
