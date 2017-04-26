@@ -46,7 +46,7 @@ test_mc(4, [msg_bad, msg_bad, msg_bad, msg_success])
 
 Do you remember the plot of the last exercise? Let's make an even cooler plot!
 
-A dataset of movies, `movies`, is available in the workspace.
+A dataset of movies, `movies`, is available in the workspace. second try.
 
 *** =instructions
 - The first function, `np.unique()`, uses the `unique()` function of the `numpy` package to get integer values for the movie genres. You don't have to change this code, just have a look!
@@ -72,12 +72,17 @@ import pprint as pp
 import os
 os.environ["DW_AUTH_TOKEN"] = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg
 
+dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
 ```
 
 *** =solution
 ```{python}
 import datadotworld as dw
 import pprint as pp
+import os
+os.environ["DW_AUTH_TOKEN"] = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg
+
+dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
 ```
 
 *** =sct
