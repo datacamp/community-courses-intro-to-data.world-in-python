@@ -106,7 +106,7 @@ pp.pprint(dataset.describe('alderman_votes'))
 *** =sct
 ```{python}
 
-test_function('pp.pprint', index = 2)
+test_function('pp.pprint', index = 1)
 
 success_msg("Great work!")
 ```
