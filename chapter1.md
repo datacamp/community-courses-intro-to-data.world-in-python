@@ -44,15 +44,19 @@ test_mc(4, [msg_bad, msg_bad, msg_bad, msg_success])
 --- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
 ## Plot the movies yourself
 
-Do you remember the plot of the last exercise? Let's make an even cooler plot!
+Datasets on data.world are identified by their URL (e.g. https://data.world/stephen-hoover/chicago-city-council-votes). More simply, they can be identified by their unique path, in this case: stephen-hoover/chicago-city-council-votes.
+To get started, import the datadotworld module as dw and use the load_dataset() function to load the dataset and assign the result to a variable called dataset.
 
-A dataset of movies, `movies`, is available in the workspace. second try.
+Datasets on data.world start with one or more files (including tabular data, documentation, scripts, reports, etc) and they are enhanced by users with metadata, including summary, descriptions for files and columns and more.
+Use the describe() function of the dataset object to review all the metadata that is downloaded with the dataset.
+
+In addition, data.world will analyze the data and attempt to extract a schema for all tabular files.
+Use the same describe() function again, but now, try to get a description of a specific resource: alderman_votes.
 
 *** =instructions
-- The first function, `np.unique()`, uses the `unique()` function of the `numpy` package to get integer values for the movie genres. You don't have to change this code, just have a look!
-- Import `pyplot` in the `matplotlib` package. Set an alias for this import: `plt`.
-- Use `plt.scatter()` to plot `movies.runtime` onto the x-axis, `movies.rating` onto the y-axis and use `ints` for the color of the dots. You should use the first and second positional argument, and the `c` keyword.
-- Show the plot using `plt.show()`.
+- Import the datadotworld module as dw
+- Use the describe() function of the dataset object to review all the metadata that is downloaded with the dataset.
+- Use the same describe() function again, but now, try to get a description of a specific resource: alderman_votes.
 
 *** =hint
 - You don't have to program anything for the first instruction, just take a look at the first line of code.
@@ -62,25 +66,27 @@ A dataset of movies, `movies`, is available in the workspace. second try.
 
 *** =pre_exercise_code
 ```{python}
-import datadotworld as dw
 import pprint as pp
 import os
 
-filename = "/home/repl/.dw/config"
+filename = '/home/repl/.dw/config'
 if not os.path.exists(os.path.dirname(filename)):
     try:
         os.makedirs(os.path.dirname(filename))
     except OSError as exc: # Guard against race condition
         if exc.errno != errno.EEXIST:
             raise
-with open(filename, "w") as f:
-    f.write("[DEFAULT]\n")
-    f.write("auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg")
+with open(filename, 'w') as f:
+    f.write('[DEFAULT]\n')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
     f.close()
 ```
 
 *** =sample_code
 ```{python}
+# Import the datadotworld module as dw
+import datadotworld as __
+
 # Import the city council votes dataset
 dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
 
@@ -93,6 +99,9 @@ pp.pprint(dataset.describe(___))
 
 *** =solution
 ```{python}
+# Import the datadotworld module as dw
+import datadotworld as dw
+
 # Import the city council votes dataset
 dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
 
@@ -105,8 +114,9 @@ pp.pprint(dataset.describe('alderman_votes'))
 
 *** =sct
 ```{python}
+test_import('datadotworld', same_as = True)
 
 test_function('pp.pprint', index = 1)
 
-success_msg("Great work!")
+success_msg('Great work!')
 ```
