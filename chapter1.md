@@ -62,33 +62,50 @@ A dataset of movies, `movies`, is available in the workspace. second try.
 
 *** =pre_exercise_code
 ```{python}
+import datadotworld as dw
+import pprint as pp
+import os
 
+filename = "/home/repl/.dw/config"
+if not os.path.exists(os.path.dirname(filename)):
+    try:
+        os.makedirs(os.path.dirname(filename))
+    except OSError as exc: # Guard against race condition
+        if exc.errno != errno.EEXIST:
+            raise
+with open(filename, "w") as f:
+    f.write("[DEFAULT]\n")
+    f.write("auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg")
+    f.close()
 ```
 
 *** =sample_code
 ```{python}
-import datadotworld as dw
-import pprint as pp
-import os
-os.environ["DW_AUTH_TOKEN"] = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg'
-
+# Import the city council votes dataset
 dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
+
+# Use describe() to review all the metadata that is downloaded with the dataset
+pp.pprint(dataset.describe())
+
+# Use describe() again to get a description of a specific resource: alderman_votes
+pp.pprint(dataset.describe(___))
 ```
 
 *** =solution
 ```{python}
-import datadotworld as dw
-import pprint as pp
-import os
-os.environ["DW_AUTH_TOKEN"] = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg'
-
+# Import the city council votes dataset
 dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
+
+# Use describe() to review all the metadata that is downloaded with the dataset
+pp.pprint(dataset.describe())
+
+# Use the same describe() to get a description of a specific resource: alderman_votes
+pp.pprint(dataset.describe('alderman_votes'))
 ```
 
 *** =sct
 ```{python}
-test_import("datadotworld", same_as = True)
-
+test_object("dataset", same_as = True)
 
 success_msg("Great work!")
 ```
