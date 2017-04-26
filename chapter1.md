@@ -105,7 +105,7 @@ pp.pprint(dataset.describe('alderman_votes'))
 
 *** =sct
 ```{python}
-test_object("dataset", same_as = True)
+test_object("dataset")
 
 success_msg("Great work!")
 ```
