@@ -1,30 +1,27 @@
 ---
-title       : Example exercise dw
-description : Example exercise dw
+title       : Introduction
+description : Introduction to data.world
 attachments :
 
 --- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
-## Plot the movies yourself
+## Introduction
 
-Datasets on data.world are identified by their URL (e.g. https://data.world/stephen-hoover/chicago-city-council-votes). More simply, they can be identified by their unique path, in this case: stephen-hoover/chicago-city-council-votes.
-To get started, import the datadotworld module as dw and use the load_dataset() function to load the dataset and assign the result to a variable called dataset.
+Hello and welcome to the intro to data.world tutorial! At data.world, we're building the most meaningful, collaborative, and abundant data resource in the world by breaking down the barriers between data and people. Join data.world to find interesting data and understand it at a glance, store and showcase your own data and data projects, as well as find and collaborate with others. 
 
-Datasets on data.world start with one or more files (including tabular data, documentation, scripts, reports, etc) and they are enhanced by users with metadata, including summary, descriptions for files and columns and more.
-Use the describe() function of the dataset object to review all the metadata that is downloaded with the dataset.
+Open data is at the heart of data.world, and as such we want to make it as easy as possible to use data.world data in your environment of choice, so that you can do your work easier and solve real problems faster. Which brings us to this tutorial where you’ll learn how to work with data.world using Python.
 
-In addition, data.world will analyze the data and attempt to extract a schema for all tabular files.
-Use the same describe() function again, but now, try to get a description of a specific resource: alderman_votes.
+We’ll walk through the different ways to connect to data.world and the basic functionality in our Python SDK. Let’s start with some basics to kick things off….
 
 *** =instructions
-- Import the datadotworld module as dw
-- Use the describe() function of the dataset object to review all the metadata that is downloaded with the dataset.
-- Use the same describe() function again, but now, try to get a description of a specific resource: alderman_votes.
+- Import the `datadotworld` module as `dw`
+- Use the `load_dataset` method to assign `stephen-hoover/chicago-city-council-votes` to a `dataset` variable.
+- Use the `describe()` function of the dataset object to print all the metadata that is downloaded with the dataset.
 
 *** =hint
 - You don't have to program anything for the first instruction, just take a look at the first line of code.
-- Use `import ___ as ___` to import `matplotlib.pyplot` as `plt`.
-- Use `plt.scatter(___, ___, c = ___)` for the third instruction.
-- You'll always have to type in `plt.show()` to show the plot you created.
+- Use `import ___ as ___` to import `datadotworld` as `dw`.
+- Use `dataset = dw.load_dataset(___)` to import `stephen-hoover/chicago-city-council-votes`.
+- Print the dataset's metadata with `pp.pprint(dataset.describe())`
 
 *** =pre_exercise_code
 ```{python}
@@ -47,16 +44,13 @@ with open(filename, 'w') as f:
 *** =sample_code
 ```{python}
 # Import the datadotworld module as dw
-import datadotworld as __
+import ___ as ___
 
 # Import the city council votes dataset
-dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
+dataset = dw.___(___)
 
 # Use describe() to review all the metadata that is downloaded with the dataset
-pp.pprint(dataset.describe())
-
-# Use describe() again to get a description of a specific resource: alderman_votes
-pp.pprint(dataset.describe(___))
+pp.pprint(dataset.___)
 ```
 
 *** =solution
@@ -65,13 +59,10 @@ pp.pprint(dataset.describe(___))
 import datadotworld as dw
 
 # Import the city council votes dataset
-dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
+dataset = dw.load_dataset('stephen-hoover/chicago-city-council-votes')
 
 # Use describe() to review all the metadata that is downloaded with the dataset
 pp.pprint(dataset.describe())
-
-# Use the same describe() to get a description of a specific resource: alderman_votes
-pp.pprint(dataset.describe('alderman_votes'))
 ```
 
 *** =sct
