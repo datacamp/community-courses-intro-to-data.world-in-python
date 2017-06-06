@@ -1,1 +1,1 @@
-pip install datadotworld
+pip install datadotworld[pandas]
