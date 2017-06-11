@@ -199,7 +199,7 @@ votes_dataframe.head(3)
 ```{python}
 test_import('datadotworld', same_as = True)
 
-test_function('pprint.pprint', index = 2)
+test_function('pprint.pprint', index = 1)
 
 success_msg('Great work!')
 ```
