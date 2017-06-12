@@ -6,7 +6,7 @@ attachments :
 --- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
 ## Working with datasets
 
-Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. 
+Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'table id' will be good to know for queries later on.
 
 Datasets on data.world start with one or more files (including tabular data, documentation, scripts, reports, etc) and they are enhanced by users with metadata, including a dataset summary, descriptions for files and columns and more. The describe() function of the dataset object can be used to review all the metadata that is downloaded with the dataset.
 
@@ -136,7 +136,11 @@ test_mc(correct = 3, msgs = (msg1,msg2,msg3))
 --- type:NormalExercise lang:python xp:100 skills:2 key:943dd4c4ef
 ## Accessing the data
 
-Now that you know how to load a dataset object, you'll have access to three properties that let you access the data: `raw_data`, `tables`, and `dataframes`. Each returns a dictionary of values, just in different formats: `bytes`, `list` and `pandas.DataFrame`, respectively.
+Now that you know how to load a dataset object, you'll have access to three properties that let you access the data: `raw_data`, `tables`, and `dataframes`. 
+
+Each of these returns a dictionary of values, just in different formats: `bytes`, `list` and `pandas.DataFrame` objects, respectively. Use what makes sense for your use case, but note that not all files within a dataset on data.world are tabular, and therefore would only be returned with the `raw_data` response.
+
+Let's practice creating a dataframe from a specific table in our dataset. Note that `datadotworld` is already imported and the `dataset` variable has been created with `load_dataset`:
 
 *** =instructions
 - Use the `dataframes` property to assign the `alderman_votes` table to the variable `votes_dataframe`.

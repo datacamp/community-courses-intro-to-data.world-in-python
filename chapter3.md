@@ -5,10 +5,16 @@ description : Working with multiple datasets
 --- type:NormalExercise lang:python xp:100 skills:2 key:be733d3f8a
 ## Working with multiple datasets
 
-Insert Summary Here
+You can load as many different datasets as you’d like from data.world and work with them together. Here we’ve used the `load_dataset` method to bring in two separate datasets, assigning them each to a variable. 
+
+We’ll leave it to you to create a dataframe for each using the `dataframe` property, and then merge the two dataframes together on the `state` and `STUSAB` fields. 
+
+After merging them together, add a new `CityState` field to `police_shootings`, populating it with the concatenated values of the `city` and `STATE_NAME` fields, separated by `, ` resulting in a `city, state` format.
+
 
 *** =instructions
-- Add instructions here
+- Create a `police_shootings` dataframe from the `fatal-police-shootings-data` table in `int_dataset`
+- Create a `state_abbrvs` dataframe from the `StatesFIPSCodes` table in `fipsCodes_dataset`
 
 *** =hint
 - Add instructions here
@@ -40,10 +46,10 @@ import datadotworld as dw
 int_dataset = dw.load_dataset('https://data.world/jonloyens/intermediate-data-world')
 fipsCodes_dataset = dw.load_dataset('https://data.world/uscensusbureau/fips-state-codes')
 
-## Create two dataframes, police_shootings from the 'fatal-police-shootings-data' table of int_dataset and  state_abbrvs, from the 'StatesFIPSCodes' table of fipsCodes_dataset
+## Create two dataframes, police_shootings from the 'fatal-police-shootings-data' table of int_dataset and state_abbrvs, from the 'statesfipscodes' table of fipsCodes_dataset
 
 
-## Merge full state names from the census
+## Merge full the two datasets together on the STUSAB and state fields
 
 
 ## Add a 'CityState' column to the police_shootings dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
@@ -62,9 +68,9 @@ import datadotworld as dw
 int_dataset = dw.load_dataset('https://data.world/jonloyens/intermediate-data-world')
 fipsCodes_dataset = dw.load_dataset('https://data.world/uscensusbureau/fips-state-codes')
 
-# Create two dataframes, police_shootings from the 'fatal-police-shootings-data' table of int_dataset and state_abbrvs, from the 'StatesFIPSCodes' table of fipsCodes_dataset
+# Create two dataframes, police_shootings from the 'fatal-police-shootings-data' table of int_dataset and state_abbrvs, from the 'statesfipscodes' table of fipsCodes_dataset
 police_shootings = int_dataset.dataframes['fatal-police-shootings-data']
-state_abbrvs = fipsCodes_dataset.dataframes['StatesFIPSCodes']
+state_abbrvs = fipsCodes_dataset.dataframes['statesfipscodes']
 
 ## Merge full the two datasets together on the STUSAB and state fields
 police_shootings = police_shootings.merge(state_abbrvs, how = 'left', left_on = 'state', right_on='STUSAB')
