@@ -93,20 +93,33 @@ Not only can you create very specific queries against a single table on data.wor
 
 We call these cross-dataset queries 'federated queries' and they're just like same-dataset queries, but require you to specify not just the name of the tables, but also the unique dataset path that the remote table is in. 
 
-We've been using the full URL for the dataset in our datadotworld method examples, but for federated queries, you'll need to use just the unique part of the URL path. Let's look at the dataset `https://data.world/health/obesity-by-state-2014`. The unique part of the URL will be `health/obesity-by-state-2014`, where `health` is the owner id and `obesity-by-state-2014` is the dataset id. 
+We've been using the full URL for the dataset in our datadotworld method examples, but for federated queries, you'll need to use just the unique part of the URL path. Let's look at the dataset `https://data.world/len/intelligence-of-dogs`. The unique part of the URL will be `len/intelligence-of-dogs`, where `len` is the owner id and `intelligence-of-dogs` is the dataset id. 
 
-We'll use this to build an example query that calls the `adult_obese` table from that dataset, which will be joined against the `Export` table of the 'local' dataset we'll pass as a parameter to the `query` method, `https://data.world/agriculture/national-farmers-markets`:
+We'll use this to build an example query that calls the `dog_intelligence` table from that dataset, which will be joined against the `AKC Breed Info` table of the 'local' dataset we'll pass as a parameter to the `query` method, `https://data.world/len/dog-canine-breed-size-akc`:
 
 ``
-SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg 
-FROM Export 
-LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location 
-GROUP BY State
-ORDER BY count desc``
+SELECT breedSmarts.Classification, AVG(breedSmarts.obey) as obey, AVG(weight_high_lbs) as heavyWeightAvg, AVG(weight_low_lbs) as lowWeightAvg 
+FROM `AKC Breed Info` as breedSize
+JOIN len.`intelligence-of-dogs`.`dog_intelligence` as breedSmarts ON breedSmarts.Breed = breedSize.breed
+GROUP BY breedSmarts.Classification
+ORDER BY obey
+``
+
+Now try it on your own with a different set of datasets:
 
 *** =instructions
+- Write a query against `https://data.world/agriculture/national-farmers-markets` to left join it's `Export` table with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014`. Select `State`, the count of farmer's markets (FMID), and the average of `Value` from `adult_obese`
+- Execute the SQL query against `https://data.world/agriculture/national-farmers-markets` using the `query()` method
+- Create a `stateStats` dataframe from the results
+- Plot `stateStats` results using State as the x-axis (matplotlib is already imported)
+
 
 *** =hint
+- Here's the query you can use 
+``
+SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc``
+- To execute the query use: queryResults = dw.query(____, _____)
+- To plot the results, use _____.plot(x=____)
 
 *** =pre_exercise_code
 ```{python}
