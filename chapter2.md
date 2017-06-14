@@ -6,23 +6,23 @@ attachments :
 --- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
 ## Working with datasets
 
-Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'table id' will be good to know for queries later on.
+Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'table id' will be good to know for queries and APIs later on.
 
 Datasets on data.world start with one or more files (including tabular data, documentation, scripts, reports, etc) and they are enhanced by users with metadata, including a dataset summary, descriptions for files and columns and more. The describe() function of the dataset object can be used to review all the metadata that is downloaded with the dataset.
 
-In addition, data.world will analyze the data and attempt to extract a schema for all tabular files (CSVs). Use the same `describe()` function to get the metadata for a particular csv file by passing it as a parameter.
+In addition, data.world will analyze the data and attempt to extract a schema for all tabular files (CSVs). Use the same `describe()` function to get the metadata for a particular table (csv resource) by passing it as a parameter.
 
 *** =instructions
 - Import the `datadotworld` module as `dw`
 - Use the `load_dataset` method to assign `https://data.world/stephen-hoover/chicago-city-council-votes` to a `dataset` variable (notice that this time we're using the full URL).
 - Use the `describe()` function of the dataset object to print all the metadata that is downloaded with the dataset.
-- Use the same `describe()` function again, but now, use it to get a description of a specific resource: `alderman_votes`.
+- Use the same `describe()` function again, but now, use it to print a description of a specific resource: `alderman_votes`.
 
 *** =hint
-- You don't have to program anything for the first instruction, just take a look at the first line of code.
 - Use `import ___ as ___` to import `datadotworld` as `dw`.
 - Use `dataset = dw.load_dataset(___)` to import `https://data.world/stephen-hoover/chicago-city-council-votes`.
 - Print the dataset's metadata with `pp.pprint(dataset.describe())`
+- Use `pp.pprint(dataset.describe(_____))` to print the `alderman_votes` metadata
 
 *** =pre_exercise_code
 ```{python}
@@ -51,10 +51,10 @@ with open(filename, 'w') as f:
 dataset = 
 
 # Use describe() to review all the metadata that is downloaded with the dataset. 
-# Print it to the screen using pp.print().
+# Print it to the screen using pp.pprint().
 pp.pprint(___)
 
-# Use describe() again to get a description of a specific resource: alderman_votes
+# Use describe() again to get a description of a specific resource: alderman_votes. Print it to the screen.
 
 ```
 
@@ -147,6 +147,10 @@ Let's practice creating a dataframe from a specific table in our dataset. Note t
 - Explore the data by printing out the dataframe's `shape` and first 3 rows.
 
 *** =hint
+- Make sure to use brackets to request the resources to return. Ex. `dataset.dataframes[______]`
+- Print the table's shape using `pp.pprint(____.shape)`
+- Use `pp.pprint(_____.head(_))` to print the first 3 rows. 
+
 
 *** =pre_exercise_code
 ```{python}
@@ -195,7 +199,7 @@ votes_dataframe = dataset.dataframes['alderman_votes']
 pp.pprint(votes_dataframe.shape)
 
 # Use the pandas head function to print the first 3 rows.
-votes_dataframe.head(3)
+pp.pprint(votes_dataframe.head(3))
 
 ```
 
@@ -203,7 +207,7 @@ votes_dataframe.head(3)
 ```{python}
 test_import('datadotworld', same_as = True)
 
-test_function('pprint.pprint', index = 1)
+test_function('pprint.pprint', index = 2)
 
 success_msg('Great work!')
 ```

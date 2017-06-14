@@ -7,17 +7,23 @@ description : Working with multiple datasets
 
 You can load as many different datasets as you’d like from data.world and work with them together. Here we’ve used the `load_dataset` method to bring in two separate datasets, assigning them each to a variable. 
 
-We’ll leave it to you to create a dataframe for each using the `dataframe` property, and then merge the two dataframes together on the `state` and `STUSAB` fields. 
+We’ll leave it to you to create a dataframe for each using the `dataframes` property, and then merge the two dataframes together on the `state` and `STUSAB` fields. 
 
-After merging them together, add a new `CityState` field to `police_shootings`, populating it with the concatenated values of the `city` and `STATE_NAME` fields, separated by `, ` resulting in a `city, state` format.
+After merging them together, add a new `citystate` field to your merged dataset, populating it with the concatenated values of the `city` and `STATE_NAME` fields, separated by `, ` resulting in a `city, state` format.
 
 
 *** =instructions
 - Create a `police_shootings` dataframe from the `fatal-police-shootings-data` table in `int_dataset`
-- Create a `state_abbrvs` dataframe from the `StatesFIPSCodes` table in `fipsCodes_dataset`
+- Create a `state_abbrvs` dataframe from the `statesfipscodes` table in `fipsCodes_dataset`
+- Merge the two dataframes together on the `state` and `STUSAB` fields using the merge() function. Assign to `merged_dataset`.
+- Add a 'citystate' column to your merged dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
+- Print first 5 rows of merged dataframe
 
 *** =hint
-- Add instructions here
+- Make sure to use brackets to request the resources to return. Ex. `police_shootings.dataframes[______]`
+- Merge the datasets with `police_shootings.merge(____, how = 'left', left_on = ___, right_on=___)`
+- Create the new `citystate` field using `____["citystate"] = ____["city"] + "__" + ____["STATE_NAME"]`
+- Print the first 5 rows using the `head()` function.
 
 *** =pre_exercise_code
 ```{python}
@@ -46,16 +52,16 @@ import datadotworld as dw
 int_dataset = dw.load_dataset('https://data.world/jonloyens/intermediate-data-world')
 fipsCodes_dataset = dw.load_dataset('https://data.world/uscensusbureau/fips-state-codes')
 
-## Create two dataframes, police_shootings from the 'fatal-police-shootings-data' table of int_dataset and state_abbrvs, from the 'statesfipscodes' table of fipsCodes_dataset
+## Create two dataframes: police_shootings from the 'fatal-police-shootings-data' table of int_dataset and state_abbrvs, from the 'statesfipscodes' table of fipsCodes_dataset
 
 
-## Merge full the two datasets together on the STUSAB and state fields
+## Merge the two datasets together on the STUSAB and state fields. Assign to a merged_dataset variable.
+merged_dataset = 
 
 
-## Add a 'CityState' column to the police_shootings dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
+## Add a 'citystate' column to the police_shootings dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
 
-
-## Print head of dataframe
+## Print first 5 rows of merged dataframe
 
 ```
 
@@ -68,25 +74,25 @@ import datadotworld as dw
 int_dataset = dw.load_dataset('https://data.world/jonloyens/intermediate-data-world')
 fipsCodes_dataset = dw.load_dataset('https://data.world/uscensusbureau/fips-state-codes')
 
-# Create two dataframes, police_shootings from the 'fatal-police-shootings-data' table of int_dataset and state_abbrvs, from the 'statesfipscodes' table of fipsCodes_dataset
+# Create two dataframes: police_shootings from the 'fatal-police-shootings-data' table of int_dataset and state_abbrvs, from the 'statesfipscodes' table of fipsCodes_dataset
 police_shootings = int_dataset.dataframes['fatal-police-shootings-data']
 state_abbrvs = fipsCodes_dataset.dataframes['statesfipscodes']
 
-## Merge full the two datasets together on the STUSAB and state fields
-police_shootings = police_shootings.merge(state_abbrvs, how = 'left', left_on = 'state', right_on='STUSAB')
+## Merge the two datasets together on the STUSAB and state fields. Assign to a merged_dataset variable.
+merged_dataset = police_shootings.merge(state_abbrvs, how = 'left', left_on = 'state', right_on='STUSAB')
 
-## Add a 'CityState' column to the police_shootings dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
-police_shootings["citystate"] = police_shootings["city"] + ", " + police_shootings["STATE_NAME"]
+## Add a 'citystate' column to the police_shootings dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
+merged_dataset["citystate"] = merged_dataset["city"] + ", " + merged_dataset["STATE_NAME"]
 
-## Print head of dataframe
-police_shootings.head(3)
+## Print head of merged dataframe
+pp.pprint(merged_dataset.head(5))
 ```
 
 *** =sct
 ```{python}
 test_import('datadotworld', same_as = True)
 
-#test_function('pprint.pprint', index = 2)
+test_function('pprint.pprint', index = 1)
 
 success_msg('Great work!')
 ```

@@ -21,6 +21,8 @@ Using the dataset at `https://data.world/nrippner/refugee-host-nations`, follow 
 
 *** =hint
 - Make sure to use backtics around the table name, since it has an understore in it. You'll need to include these for hyphens as well.
+- Use the query ``SELECT * FROM `unhcr_all` WHERE Year = 2010``
+- Use t dataframe property with this format: `____.dataframe`
 
 *** =pre_exercise_code
 ```{python}
@@ -73,7 +75,7 @@ query2010 = dw.query('https://data.world/nrippner/refugee-host-nations', sql_que
 unhcr2010 = query2010.dataframe
 
 ## Print the first 5 rows using the head method.
-unhcr2010.head(5)
+pp.pprint(unhcr2010.head(5))
 ```
 
 *** =sct
