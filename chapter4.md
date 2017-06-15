@@ -8,7 +8,7 @@ Another way to pull data in from data.world is to use the `query()` method of th
 
 The `query()` method is a lot like `load_dataset` as it gives you access to three properties to access the resulting data: `raw_data`, `table`, and `dataframe`. Lets try out a couple of SQL queries and then we'll jump into a SPARQL example. 
 
-Data.world actually supports a dialect of SQL called *dwSQL*. *dwSQL* does most everything you'd normally do in a SQL `SELECT`, and it also has some extended funcionality specific to data.world. Check out the [full dwSQL documentation](https://docs.data.world/tutorials/dwsql/), and here we'll work with some basics.
+data.world actually supports a dialect of SQL called *dwSQL*. *dwSQL* does most everything you'd normally do in a SQL `SELECT`, and it also has some extended funcionality specific to data.world. Check out the [full dwSQL documentation](https://docs.data.world/tutorials/dwsql/), and here we'll work with some basics.
 
 Using the dataset at `https://data.world/nrippner/refugee-host-nations`, follow the instructions below:
 
@@ -101,13 +101,19 @@ We've been using the full URL for the dataset in our datadotworld method example
 
 Lets use that to build an example query that calls the `dog_intelligence` table from that dataset, which will be joined against the `AKC Breed Info` table of the 'local' dataset we'll pass as a parameter to the `query` method, `https://data.world/len/dog-canine-breed-size-akc`:
 
-``
-SELECT breedSmarts.Classification, AVG(breedSmarts.obey) as obey, AVG(weight_high_lbs) as heavyWeightAvg, AVG(weight_low_lbs) as lowWeightAvg 
-FROM `AKC Breed Info` as breedSize
-JOIN len.`intelligence-of-dogs`.`dog_intelligence` as breedSmarts ON breedSmarts.Breed = breedSize.breed
+```{sql}
+SELECT 
+  breedSmarts.Classification, 
+  AVG(breedSmarts.obey) AS obey, 
+  AVG(weight_high_lbs) AS heavyWeightAvg, 
+  AVG(weight_low_lbs) AS lowWeightAvg 
+FROM `AKC Breed Info` AS breedSize
+  JOIN len.`intelligence-of-dogs`.`dog_intelligence` 
+    AS breedSmarts 
+  ON breedSmarts.Breed = breedSize.breed
 GROUP BY breedSmarts.Classification
 ORDER BY obey
-``
+```
 
 Now try a similar query on your own with a different set of datasets:
 

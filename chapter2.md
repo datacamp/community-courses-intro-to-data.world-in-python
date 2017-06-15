@@ -6,7 +6,7 @@ attachments :
 --- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
 ## Working with datasets
 
-Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'table id' will be good to know for queries and APIs later on.
+Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'dataset key' will be good to know for queries and APIs later on.
 
 Datasets on data.world start with one or more files (including tabular data, documentation, scripts, reports, etc) and they are enhanced by users with metadata, including a dataset summary, descriptions for files and columns and more. The describe() function of the dataset object can be used to review all the metadata that is downloaded with the dataset.
 

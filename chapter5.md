@@ -19,14 +19,14 @@ Use `help(api_client)` to learn more about each available function or see the fu
 
 *** =instructions
 - Create an `api_client` variable and assign it an instance of the ApiClient using `api_client()`.
-- Use `create_dataset()` to create a dataset under the `datacampstudent` account named `yourname_datacamp` (use your name or handle!), with a `visibility` of `OPEN`
+- Use `create_dataset()` to create a dataset under the `datacampstudent` account named `yourname-datacamp` (use your name or handle!), with a `visibility` of `OPEN`
 - Use the pandas `to_csv()` method to write the `police_shootings` dataframe to `police_shootings.csv`. Be sure to pass a `encoding='utf-8'` parameter
 - Use the `upload_files()` method to upload `police_shootings.csv` to your dataset. Note that you'll use the unique path of the dataset rather than the full URL (`owner_id/title` you used in `create_dataset()`)
 
 
 *** =hint
 - Remember to use quotes around your parameter values.
-- Create a local `police_shootings.csv` file using `_____.to_csv('police_shootings.csv', encoding='utf-8’)`
+- Create a local `police_shootings.csv` file using `_____.to_csv('police_shootings.csv', encoding='utf-8')`
 - Use the format `api_client.upload_files(['INSERT_DATASET_UNIQUE_PATH', ['INSERT_FILE_PATH'])`
 
 *** =pre_exercise_code
@@ -56,10 +56,10 @@ police_shootings = dw.load_dataset('https://data.world/jonloyens/intermediate-da
 # Create an instance of the ApiClient using `api_client()` and assign it to an `api_client` variable
 api_client = ____
 
-# Use the `create_dataset()` method to create a dataset under the ‘datacampstudent’ account named ‘yourname_datacamp’ (use your name or handle!), with a `visibility` of ‘OPEN’
+# Use the `create_dataset()` method to create a dataset under the ‘datacampstudent’ account named ‘yourname-datacamp’ (use your name or handle!), with a `visibility` of ‘OPEN’
 api_client.____(owner_id=____, title=____, visibility=____)
 
-# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass an encoding='utf-8’ parameter
+# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass an encoding='utf-8' parameter
 
 # Use the `upload_files()` method to upload `police_shootings.csv` to your dataset
 _____.____(_____,[_____])
@@ -74,14 +74,14 @@ police_shootings = dw.load_dataset('https://data.world/jonloyens/intermediate-da
 # Create an instance of the ApiClient using `api_client()` and assign it to an `api_client` variable
 api_client = dw.api_client()
 
-# Use the `create_dataset()` method to create a dataset under the ‘datacampstudent’ account named ‘yourname_datacamp’ (use your name or handle!), with a `visibility` of ‘OPEN’
-api_client.create_dataset(owner_id='datacampstudent', title='rebecca_datacamp', visibility='OPEN')
+# Use the `create_dataset()` method to create a dataset under the ‘datacampstudent’ account named ‘yourname-datacamp’ (use your name or handle!), with a `visibility` of ‘OPEN’
+api_client.create_dataset(owner_id='datacampstudent', title='rebecca-datacamp', visibility='OPEN')
 
-# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass an encoding='utf-8’ parameter
-police_shootings.to_csv('police_shootings.csv', encoding='utf-8’)
+# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass an encoding='utf-8' parameter
+police_shootings.to_csv('police_shootings.csv', encoding='utf-8')
 
 ## Use the `upload_files()` method to upload `police_shootings.csv` to your dataset
-api_client.upload_files('datacampstudent/rebecca_datacamp',['police_shootings.csv'])
+api_client.upload_files('datacampstudent/rebecca-datacamp',['police_shootings.csv'])
 
 ```
 
