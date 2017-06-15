@@ -53,13 +53,13 @@ with open(filename, 'w') as f:
 import datadotworld as dw
 police_shootings = dw.load_dataset('https://data.world/jonloyens/intermediate-data-world').dataframes['fatal-police-shootings-data']
 
-# Create an instance of the ApiClient using `api_client()` and assign it to a `api_client` variable
+# Create an instance of the ApiClient using `api_client()` and assign it to an `api_client` variable
 api_client = ____
 
 # Use the `create_dataset()` method to create a dataset under the ‘datacampstudent’ account named ‘yourname_datacamp’ (use your name or handle!), with a `visibility` of ‘OPEN’
 api_client.____(owner_id=____, title=____, visibility=____)
 
-# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass a encoding='utf-8’ parameter
+# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass an encoding='utf-8’ parameter
 
 # Use the `upload_files()` method to upload `police_shootings.csv` to your dataset
 _____.____(_____,[_____])
@@ -71,11 +71,13 @@ _____.____(_____,[_____])
 import datadotworld as dw
 police_shootings = dw.load_dataset('https://data.world/jonloyens/intermediate-data-world').dataframes['fatal-police-shootings-data']
 
+# Create an instance of the ApiClient using `api_client()` and assign it to an `api_client` variable
+api_client = dw.api_client()
 
 # Use the `create_dataset()` method to create a dataset under the ‘datacampstudent’ account named ‘yourname_datacamp’ (use your name or handle!), with a `visibility` of ‘OPEN’
 api_client.create_dataset(owner_id='datacampstudent', title='rebecca_datacamp', visibility='OPEN')
 
-# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass a encoding='utf-8’ parameter
+# Use the pandas to_csv() method to write the `police_shootings` dataframe to 'police_shootings.csv'. Be sure to pass an encoding='utf-8’ parameter
 police_shootings.to_csv('police_shootings.csv', encoding='utf-8’)
 
 ## Use the `upload_files()` method to upload `police_shootings.csv` to your dataset
@@ -127,6 +129,10 @@ with open(filename, 'w') as f:
 
 *** =sample_code
 ```{python}
+# datadotworld module has been imported as dw and api_client has been instantiated:
+import datadotworld as dw
+api_client = dw.api_client()
+
 # Use the `add_files_via_url()` method to upload 'https://github.com/fivethirtyeight/data/blob/master/police-deaths/all_data.csv’ to your dataset. Name the file ‘shootings_of_police.csv’.
 ____.____(____,{[INSERT_FILE_NAME: [INSERT_SOURCE_URL]})
 
@@ -140,6 +146,10 @@ ____.____(____,{[INSERT_FILE_NAME: [INSERT_SOURCE_URL]})
 
 *** =solution
 ```{python}
+# datadotworld module has been imported as dw and api_client has been instantiated:
+import datadotworld as dw
+api_client = dw.api_client()
+
 # Use the `add_files_via_url()` method to upload 'https://github.com/fivethirtyeight/data/blob/master/police-deaths/all_data.csv’ to your dataset. Name the file ‘shootings_of_police.csv’.
 api_client.add_files_via_url(‘datacampstudent/yourname_datacamp',{'shootings_of_police.csv': 'https://github.com/fivethirtyeight/data/blob/master/police-deaths/all_data.csv’})
 
@@ -148,7 +158,6 @@ api_client.sync_files('datacampstudent/yourname_datacamp')
 
 # Use the `update_dataset()` method to add a description and tags to your dataset
 api_client.update_dataset('datacampstudent/yourname_datacamp', description='Dataset created to test out the python SDK functionality.', tags=['test', 'datacamp'])
-
 
 
 ```
