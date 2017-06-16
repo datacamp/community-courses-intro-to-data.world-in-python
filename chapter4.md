@@ -213,12 +213,12 @@ Let's give it a shot...
 *** =instructions
 - Use the pre-defined SPARQL query to query dataset `http://data.world/tutorial/sparqltutorial` and return the results to a `queryResults` variable.
 - Create a `houseStark` dataframe.
-- Use `print` to print the dataframe to the screen.
+- Use `pp.pprint` to print the dataframe to the screen.
 
 *** =hint
 - Don't forget to pass `query_type='sparql'` as a query parameter.
 - Use the format `dw.query(____, ____, query_type=____)`
-- Print the dataframe using `print(____)`
+- Print the dataframe using `pp.pprint(____)`
 
 
 *** =pre_exercise_code
