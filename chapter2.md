@@ -86,7 +86,13 @@ success_msg('Great work!')
 --- type:MultipleChoiceExercise lang:python xp:50 skills:2 key:4c1d2c0e03
 ## Reading the metadata
 
-Based on the output from the previous exercise, how many fields does the `alderman_votes` resource have?
+We've assigned the output of the previous exercise to an `alderman_votes` variable: 
+
+`alderman_votes = dataset.describe('alderman_votes')`
+
+In the shell iPython shell to the right, print the value with `alderman_votes`.
+
+Based on the output, how many fields does the `alderman_votes` resource have?
 
 *** =instructions
 - 1
@@ -95,7 +101,8 @@ Based on the output from the previous exercise, how many fields does the `alderm
 - 16
 
 *** =hint
-Each field is an element in the `fields` array within the `schema` element. Each field will be surrournded by `{}`.
+- Each field is an element in the `fields` array within the `schema` element. Each field will be surrournded by `{}`.
+- You can also use `len(alderman_votes['schema']['fields'])` to count the field elements. 
 
 *** =pre_exercise_code
 ```{python}
@@ -121,7 +128,7 @@ import datadotworld as dw
 dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')
 
 # Use the same describe() to get a description of a specific resource: alderman_votes
-pp.pprint(dataset.describe('alderman_votes'))
+alderman_votes = dataset.describe('alderman_votes')
 
 ```
 
