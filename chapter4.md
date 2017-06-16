@@ -167,6 +167,8 @@ stateStats =
 
 ## Plot the stateStats results using State as the x-axis (matplotlib is already imported)
 ____.plot(x=____)
+
+plt.show()
 ```
 
 *** =solution
@@ -185,6 +187,8 @@ stateStats = queryResults.dataframe
 
 ## Plot the stateStats results using State as the x-axis (matplotlib is already imported)
 stateStats.plot(x='State')
+
+plt.show()
 ```
 
 *** =sct
@@ -247,7 +251,7 @@ sparql_query = "PREFIX GOT: <http://data.world/tutorial/sparqltutorial/GOT.csv/G
 
 # Use the dataframe property of the resulting query to create a dataframe variable named `houseStark`
 
-# Use print() to print the dataframe to the screen.
+# Use pp.pprint() to print the dataframe to the screen.
 
 ```
 
@@ -265,8 +269,8 @@ queryResults = dw.query('http://data.world/tutorial/sparqltutorial', sparql_quer
 # Use the dataframe property of the resulting query to create a dataframe variable named `houseStark`
 houseStark = queryResults.dataframe
 
-# Use print() to print the dataframe to the screen.
-print(houseStark)
+# Use pp.pprint() to print the dataframe to the screen.
+pp.pprint(houseStark)
 
 ```
 
@@ -274,7 +278,7 @@ print(houseStark)
 ```{python}
 test_import('datadotworld', same_as = True)
 
-test_function('print', index = 1)
+test_function('pp.pprint', index = 1)
 
 success_msg('Great work!')
 ```
