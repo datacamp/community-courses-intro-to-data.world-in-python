@@ -21,6 +21,7 @@ Download the notebook [here](https://query.data.world/s/59dlfssv3zwf1k2l8k18gg9z
 
 3 ) Copy/Paste in your data.world API token when prompted. Find your token at [https://data.world/settings/advanced](https://data.world/settings/advanced)
 
+We've also included one final code example here that shows some more ways to inspect a dataset, so check it out and just click submit to finish the course. We hope you enjoyed it!
 
 *** =instructions
 - Setup your data.world account at `https://data.world/`.
@@ -32,20 +33,82 @@ Download the notebook [here](https://query.data.world/s/59dlfssv3zwf1k2l8k18gg9z
 
 *** =pre_exercise_code
 ```{python}
+import pprint as pp
+import os
 
+filename = '/home/repl/.dw/config'
+if not os.path.exists(os.path.dirname(filename)):
+    try:
+        os.makedirs(os.path.dirname(filename))
+    except OSError as exc: # Guard against race condition
+        if exc.errno != errno.EEXIST:
+            raise
+with open(filename, 'w') as f:
+    f.write('[DEFAULT]\n')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.close()
 ```
 
 *** =sample_code
 ```{python}
+# Import the datadotworld module as dw and the sys module
+import datadotworld as dw
+import sys
+
+# Import a dataset
+refugee_dataset = dw.load_dataset('nrippner/refugee-host-nations')
+
+# Get the size of the dataset:
+sys.getsizeof(refugee_dataset)
+
+# List all of the data files:
+dataframes = refugee_dataset.dataframes
+for df in dataframes:
+    pp.pprint(df)
+    
+# print all of the files in a dataset:
+resources = refugee_dataset.describe()['resources']
+pp.pprint('name:')
+for r in resources:
+    pp.pprint(r['name'])
+pp.pprint('\ntype of file:')
+for r in resources:
+    pp.pprint(r['format'])
 
 ```
 
 *** =solution
 ```{python}
+# Import the datadotworld module as dw and the sys module
+import datadotworld as dw
+import sys
 
+# Import a dataset
+refugee_dataset = dw.load_dataset('nrippner/refugee-host-nations')
+
+# Get the size of the dataset:
+sys.getsizeof(refugee_dataset)
+
+# List all of the data files:
+dataframes = refugee_dataset.dataframes
+for df in dataframes:
+    pp.pprint(df)
+    
+# print all of the files in a dataset:
+resources = refugee_dataset.describe()['resources']
+pp.pprint('name:')
+for r in resources:
+    pp.pprint(r['name'])
+pp.pprint('\ntype of file:')
+for r in resources:
+    pp.pprint(r['format'])
 ```
 
 *** =sct
 ```{python}
+test_import('datadotworld', same_as = True)
 
+test_function('pprint.pprint', index = 2)
+
+success_msg('Great work!')
 ```

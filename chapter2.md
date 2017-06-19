@@ -90,7 +90,7 @@ We've assigned the output of the previous exercise to an `alderman_votes` variab
 
 `alderman_votes = dataset.describe('alderman_votes')`
 
-In the shell iPython shell to the right, print the value with `alderman_votes`.
+In the iPython shell to the right, print the value by typing `alderman_votes`.
 
 Based on the output, how many fields does the `alderman_votes` resource have?
 
@@ -135,7 +135,7 @@ alderman_votes = dataset.describe('alderman_votes')
 *** =sct
 ```{python}
 msg1 = "Try again! Count each element within `'schema': {'fields': [` and `]}`. Each field will be surrounded by `{` and `}`"
-msg2 = "Note that each field element can have a different number of attributes."
+msg2 = "You can also enter `len(alderman_votes['schema']['fields'])` into the iPython shell to get the exact count"
 msg3 = "Well done. Proceed to the next exercise"
 test_mc(correct = 3, msgs = (msg1,msg2,msg3))
 ```
