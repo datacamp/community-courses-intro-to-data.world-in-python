@@ -101,11 +101,11 @@ test_object("police_shootings", undefined_msg = msg, incorrect_msg = msg)
 msg = "Create the `state_abbrvs` dataframe using `fipsCodes_dataset.dataframes['statesfipscodes']`"
 test_object("state_abbrvs", undefined_msg = msg, incorrect_msg = msg)
 
-msg = "Create the `merged_dataframe` with the merge function like `police_shootings.merge(state_abbrvs, how = 'left', left_on = 'state', right_on='STUSAB')`"
-test_function("police_shootings.merge", 1, incorrect_msg = msg)
+msg = "Create the `merged_dataframe` dataframe with `police_shootings.merge(state_abbrvs, how = 'left', left_on = 'state', right_on='STUSAB')`"
+test_object("merged_dataframe", undefined_msg = msg, incorrect_msg = msg)
 
 msg = "Print the first 5 rows of the `merged_dataframe` using `pp.pprint(merged_dataframe.head(5))`"
-test_function('pprint.pprint', 1, incorrect_msg = msg)
+test_function('pprint.pprint', 1, incorrect_msg = msg, not_called_msg = msg)
 test_function("merged_dataframe.head", 1, incorrect_msg = msg)
 
 success_msg('Great work!')
