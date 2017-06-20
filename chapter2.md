@@ -135,9 +135,10 @@ alderman_votes = dataset.describe('alderman_votes')
 *** =sct
 ```{python}
 msg1 = "Try again! Count each element within `'schema': {'fields': [` and `]}`. Each field will be surrounded by `{` and `}`"
-msg2 = "You can also enter `len(alderman_votes['schema']['fields'])` into the iPython shell to get the exact count"
+msg2 = "Try again! Count each element within `'schema': {'fields': [` and `]}`. Each field will be surrounded by `{` and `}`"
 msg3 = "Well done. Proceed to the next exercise"
-test_mc(correct = 3, msgs = (msg1,msg2,msg3))
+msg4 = "Nope. Just count each element within `'schema': {'fields': [` and `]}`. Each field will be surrounded by `{` and `}`"
+test_mc(correct = 3, msgs = (msg1,msg2,msg3,msg4))
 ```
 
 --- type:NormalExercise lang:python xp:100 skills:2 key:943dd4c4ef

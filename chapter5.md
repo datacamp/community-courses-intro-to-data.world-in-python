@@ -110,7 +110,5 @@ for r in resources:
 ```{python}
 test_import('datadotworld', same_as = True)
 
-test_function('pprint.pprint', index = 2)
-
 success_msg('Great work!')
 ```
