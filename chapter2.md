@@ -6,9 +6,9 @@ attachments :
 --- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
 ## Working with datasets
 
-Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'dataset key' will be good to know for queries and APIs later on.
+Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path or dataset key. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'dataset key' will be good to know for queries and APIs later on.
 
-Datasets on data.world start with one or more files (including tabular data, documentation, scripts, reports, etc) and they are enhanced by users with metadata, including a dataset summary, descriptions for files and columns and more. The describe() function of the dataset object can be used to review all the metadata that is downloaded with the dataset.
+Datasets on data.world start with one or more files (including tabular data, documentation, scripts, reports, etc) and they are enhanced by members with metadata, including a dataset summary, descriptions for files and columns and more. The describe() function of the dataset object can be used to review all the metadata that is downloaded with the dataset.
 
 In addition, data.world will analyze the data and attempt to extract a schema for all tabular files (CSVs). Use the same `describe()` function to get the metadata for a particular table (csv resource) by passing it as a parameter.
 
@@ -38,7 +38,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 
@@ -118,7 +118,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 
 # Import the datadotworld module as dw
@@ -143,7 +143,7 @@ test_mc(correct = 3, msgs = (msg1,msg2,msg3))
 --- type:NormalExercise lang:python xp:100 skills:2 key:943dd4c4ef
 ## Accessing the data
 
-Now that you know how to load a dataset object, you'll have access to three properties that let you access the data: `raw_data`, `tables`, and `dataframes`. 
+Now that you know how to load a dataset object and explore it's metadata, you'll have access to three properties that let you access the data: `raw_data`, `tables`, and `dataframes`. 
 
 Each of these returns a dictionary of values, just in different formats: `bytes`, `list` and `pandas.DataFrame` objects, respectively. Use what makes sense for your use case, but note that not all files within a dataset on data.world are tabular, and therefore would only be returned with the `raw_data` response.
 
@@ -173,7 +173,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 
@@ -186,10 +186,10 @@ dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-counci
 # Use the dataframes property to assign the alderman_votes table to the variable votes_dataframe.
 votes_dataframe = 
 
-# Use the pandas shape property to get rows/columns size.
+# Use the pandas shape property to get rows/columns size for the `votes_dataframe` dataframe.
 pp.pprint(___)
 
-# Use the pandas head function to print the first 3 rows.
+# Use the pandas head function to print the first 3 rows of the `votes_dataframe` dataframe.
 
 ```
 
@@ -202,10 +202,10 @@ dataset = dw.load_dataset('https://data.world/stephen-hoover/chicago-city-counci
 # Use the dataframes property to assign the alderman_votes table to the variable votes_dataframe.
 votes_dataframe = dataset.dataframes['alderman_votes']
 
-# Use the pandas shape property to get rows/columns size.
+# Use the pandas shape property to get rows/columns size for the `votes_dataframe` dataframe.
 pp.pprint(votes_dataframe.shape)
 
-# Use the pandas head function to print the first 3 rows.
+# Use the pandas head function to print the first 3 rows of the `votes_dataframe` dataframe.
 pp.pprint(votes_dataframe.head(3))
 
 ```

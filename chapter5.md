@@ -28,8 +28,10 @@ We've also included one final code example here that shows some more ways to ins
 - Install the datadotworld Python package to your local machine using `pip install datadotworld[pandas]`.
 - Download the [jupyter notebook](https://query.data.world/s/59dlfssv3zwf1k2l8k18gg9z3) to quickly apply the things you've learned in this tutorial.
 - Use data.world to find more interesting data, store and share your own data and projects, and collaborate with other community members!
+- Just click submit to complete the course.
 
 *** =hint
+- The exercise is complete example code, so no work is needed! Just review and click submit to finish the course.
 
 *** =pre_exercise_code
 ```{python}
@@ -45,7 +47,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 

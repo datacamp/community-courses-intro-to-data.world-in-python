@@ -4,11 +4,11 @@ description : Querying with data.world
 --- type:NormalExercise lang:python xp:100 skills:2 key:27cbaefdc0
 ## SQL: Querying a table
 
-Another way to pull data in from data.world is to use the `query()` method of the datadotworld module. `query()` lets you use SQL or SPARQL to query one or more datasets, and takes a dataset URL and the query string as parameters. This makes it easy for you to pull in just what fields and aggregations you need from the data, and even lets you get joined tables with a single call to data.world. 
+Another way to pull data in from data.world is to use the `query()` method of the datadotworld module. `query()` lets you use SQL or SPARQL to query one or more datasets, and takes a dataset URL and the query string as parameters. This makes it easy for you to pull in exactly what fields and aggregations you need from the data, and even lets you get joined tables with a single call to data.world. 
 
 The `query()` method is a lot like `load_dataset` as it gives you access to three properties to access the resulting data: `raw_data`, `table`, and `dataframe`. Lets try out a couple of SQL queries and then we'll jump into a SPARQL example. 
 
-data.world actually supports a dialect of SQL called *dwSQL*. *dwSQL* does most everything you'd normally do in a SQL `SELECT`, and it also has some extended funcionality specific to data.world. Check out the [full dwSQL documentation](https://docs.data.world/tutorials/dwsql/), and here we'll work with some basics.
+SQL on data.world is actually a dialect we've created called *dwSQL*. *dwSQL* does most everything you'd normally do in a SQL `SELECT`, and it also has some extended funcionality specific to data.world. Check out the [full dwSQL documentation](https://docs.data.world/tutorials/dwsql/), and here we'll work with some basics.
 
 Using the dataset at `https://data.world/nrippner/refugee-host-nations`, follow the instructions below:
 
@@ -23,7 +23,7 @@ Using the dataset at `https://data.world/nrippner/refugee-host-nations`, follow 
 - It's a good idea to use backtics around the table name in case it has non-alpha characters in it.
 - For sql_query, just write out the SQL query as a string to assign to the variable.
 - Use the query ``SELECT * FROM `unhcr_all` WHERE Year = 2010``
-- The query method is in the format `dw.query([INSERT_DATASET_URL], [INSERT_SQL_STRING])`
+- The query method is in the format `dw.query(dataset_url, sql_query)`
 - Assign the dataframe using this format: `____.dataframe`
 
 *** =pre_exercise_code
@@ -40,7 +40,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 
@@ -95,9 +95,9 @@ success_msg('Great work!')
 
 Not only can you create very specific queries against a single table on data.world, you can also write queries against multiple tables within a single dataset or across many datasets! 
 
-We call these cross-dataset queries 'federated queries' and they're just like same-dataset queries, but require you to specify not just the name of the tables, but also the unique dataset path that the remote table is in. 
+We call these cross-dataset queries 'federated queries' and they're just like same-dataset queries, but require you to specify not just the name of the tables, but also the unique dataset path that the remote table is in using dot notation. 
 
-We've been using the full URL for the dataset in our datadotworld method examples, but for federated queries, you'll need to use just the unique part of the URL path. Let's look at the dataset `https://data.world/len/intelligence-of-dogs`. The unique part of the URL will be `len/intelligence-of-dogs`, where `len` is the owner id and `intelligence-of-dogs` is the dataset id. 
+We've been using the full URL for the dataset in our datadotworld method examples, but for federated queries, you'll need to use just the unique part of the URL path. Let's look at the dataset `https://data.world/len/intelligence-of-dogs`. The unique part of the URL is `len/intelligence-of-dogs`, where `len` is the owner id and `intelligence-of-dogs` is the dataset id. 
 
 Lets use that to build an example query that calls the `dog_intelligence` table from that dataset, which will be joined against the `AKC Breed Info` table of the 'local' dataset we'll pass as a parameter to the `query` method, `https://data.world/len/dog-canine-breed-size-akc`:
 
@@ -115,10 +115,15 @@ GROUP BY breedSmarts.Classification
 ORDER BY obey
 ```
 
+Notice on the 'secondary' table we used the dataset owner id and dataset id to reference the `dog_intelligence` table: 
+```
+len.`intelligence-of-dogs`.`dog_intelligence
+```
+
 Now try a similar query on your own with a different set of datasets:
 
 *** =instructions
-- Write a federated SQL query that returns three columns: 1. State, 2. count of farmers markets (FMID) per state, and 3. average adult obesity rate per state from the `Export` table in `https://data.world/agriculture/national-farmers-markets`, left joined with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014` on the `Export`.`State` and `adult_obese`.`Location` fields.
+- Write a federated SQL query that returns three columns: State, the count of farmers markets (FMID) per state, and the average adult obesity rate (`adult_obese`.`Value`) per state from the `Export` table in `https://data.world/agriculture/national-farmers-markets`, left joined with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014` on the `Export`.`State` and `adult_obese`.`Location` fields.
 - Execute the SQL query against `https://data.world/agriculture/national-farmers-markets` using the `query()` method
 - Create a `stateStats` dataframe from the results
 - Plot the `stateStats` results using State as the x-axis (matplotlib is already imported)
@@ -129,7 +134,7 @@ Now try a similar query on your own with a different set of datasets:
 ``
 SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc``
 - To execute the query use `queryResults = dw.query(____, _____)`
-- To plot the results, use `queryResults.plot(x='State')`
+- To plot the results, use `stateStats.plot(x='State')`
 
 *** =pre_exercise_code
 ```{python}
@@ -147,7 +152,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 
@@ -206,7 +211,7 @@ success_msg('Great work!')
 
 Behind the scenes, data.world is converting all tabular data files into linked data using Semantic Web technolgies. This allows you to upload any tabular format, like xlsx, csv, tsv or json, and instantly be able to query and join them without issue. SQL is great for this, but SPARQL - which is the query language for linked data - can be more robust and flexible than SQL, allowing for more complex queries. 
 
-We won't cover all that SPARQL can do here, but get to know SPARQL through our [tutorial](https://docs.data.world/documentation/api/sparql.html), and practice loading data with `SPARQL` through the `query` method by adding a `query_type='sparql'` parameter. 
+We won't cover all that SPARQL can do here, but get to know it through our [tutorial](https://docs.data.world/documentation/api/sparql.html), and practice loading data with SPARQL through the `query` method by adding a `query_type='sparql'` parameter. 
 
 Let's give it a shot...
 
@@ -235,7 +240,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 
@@ -278,7 +283,7 @@ pp.pprint(houseStark)
 ```{python}
 test_import('datadotworld', same_as = True)
 
-test_function('pp.pprint', index = 1)
+#test_function('pp.pprint', index = 1)
 
 success_msg('Great work!')
 ```

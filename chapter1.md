@@ -17,9 +17,9 @@ Which brings us to this tutorial where you’ll learn the different ways to conn
 - Use the `load_dataset` method to assign `stephen-hoover/chicago-city-council-votes` to a `dataset` variable.
 
 *** =hint
-- You don't have to program anything for the first instruction, just take a look at the first line of code.
+- Just fill in the blanks with the provided values:
 - Use `import ___ as ___` to import `datadotworld` as `dw`.
-- Use `dataset = dw.load_dataset(___)` to import `stephen-hoover/chicago-city-council-votes`.
+- Use `dataset = dw.load_dataset(___)` to import `stephen-hoover/chicago-city-council-votes`. Don't forget apostrophes around the dataset value! 
 
 *** =pre_exercise_code
 ```{python}
@@ -35,7 +35,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 

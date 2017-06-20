@@ -16,7 +16,7 @@ After merging them together, add a new `citystate` field to your merged dataset,
 - Create a `police_shootings` dataframe from the `fatal-police-shootings-data` table in `int_dataset`
 - Create a `state_abbrvs` dataframe from the `statesfipscodes` table in `fipsCodes_dataset`
 - Merge the two dataframes together on the `state` and `STUSAB` fields using the merge() function. Assign to `merged_dataframe`.
-- Add a 'citystate' column to your merged dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
+- Add a `citystate` column to your merged dataframe, populating it with the concatinated values from the `city` and `STATE_NAME` columns, separated by ', '. 
 - Print first 5 rows of merged dataframe
 
 *** =hint
@@ -39,7 +39,7 @@ if not os.path.exists(os.path.dirname(filename)):
             raise
 with open(filename, 'w') as f:
     f.write('[DEFAULT]\n')
-    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3dyaXRlIiwidXNlcl9hcGlfcmVhZCJdLCJnZW5lcmFsLXB1cnBvc2UiOnRydWV9.MODLiozjfoCE9VS91Ycf1-inHuZjU-tR3vBvTjRHcBuhpYoxNhmvdy_1IW28doMFO4XNgJSMu3PTuSqNaCeWTg')
+    f.write('auth_token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcm9kLXVzZXItY2xpZW50OmRhdGFjYW1wc3R1ZGVudCIsImlzcyI6ImFnZW50OmRhdGFjYW1wc3R1ZGVudDo6MmMzMTM4Y2YtMGJjNy00N2FmLTg1MWItMGE1YmQ3ZTlhYjliIiwiaWF0IjoxNDkzMjI5NjMwLCJyb2xlIjpbInVzZXJfYXBpX3JlYWQiXSwiZ2VuZXJhbC1wdXJwb3NlIjp0cnVlfQ.ISiCSEd1Zb5Ot40-osANMnlab3K4IehWFeT-7qYvzccgzuUp7eSYLY7GGNsJIhJT_JYf_PFdQG3vcTnSRGt5hA')
     f.close()
 ```
 
@@ -62,6 +62,7 @@ merged_dataframe =
 ## Add a 'citystate' column to the merged_dataframe dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
 
 ## Print first 5 rows of merged_dataframe
+
 
 ```
 
@@ -86,6 +87,8 @@ merged_dataframe["citystate"] = merged_dataframe["city"] + ", " + merged_datafra
 
 ## Print head of merged_dataframe
 pp.pprint(merged_dataframe.head(5))
+
+
 ```
 
 *** =sct
