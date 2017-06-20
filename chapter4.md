@@ -50,13 +50,13 @@ with open(filename, 'w') as f:
 import datadotworld as dw
 
 ## Write a SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
-sql_query = 
+sql_query = ___
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/nrippner/refugee-host-nations` dataset. Assign the results to a `query2010` variable.
-query2010 = 
+query2010 = ___
 
 ## Use the dataframe property of the resulting query to create a dataframe variable named `unhcr2010`
-unhcr2010 = 
+unhcr2010 = ___
 
 ## Print the first 5 rows using the head method.
 
@@ -173,13 +173,13 @@ with open(filename, 'w') as f:
 import datadotworld as dw
 
 ## Write a SQL query to select State, the count of farmers markets (FMID), and average obesity rate from agriculture.`national-farmers-markets`.Export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on State and Location
-sql_query = 
+sql_query = ___
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/agriculture/national-farmers-markets` dataset. Assign the results to a `queryResults` variable.
-queryResults = 
+queryResults = ___
 
 ## Use the dataframes property of the resulting query to create a dataframe variable named `stateStats`
-stateStats = 
+stateStats = ___
 
 ## Plot the stateStats results using State as the x-axis (matplotlib is already imported)
 ____.plot(x=____)
