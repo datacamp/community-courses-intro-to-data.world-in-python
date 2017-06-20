@@ -61,7 +61,8 @@ dataset = dw.load_dataset('stephen-hoover/chicago-city-council-votes')
 ```{python}
 test_import('datadotworld', same_as = True)
 
-#test_function('pprint.pprint', index = 2)
+test_function("datadotworld.load_dataset", not_called_msg = "Be sure to call `dw.load_dataset()`.",
+                             incorrect_msg = "You should call `dw.load_dataset()` as follows: `dw.load_dataset('stephen-hoover/chicago-city-council-votes')`.")
 
 success_msg('Great work!')
 ```

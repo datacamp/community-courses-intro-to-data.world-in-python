@@ -110,5 +110,5 @@ for r in resources:
 ```{python}
 test_import('datadotworld', same_as = True)
 
-success_msg('Great work!')
+success_msg('Great work! Congrats on completing the course!')
 ```

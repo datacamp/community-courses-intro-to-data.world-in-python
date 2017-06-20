@@ -77,7 +77,16 @@ pp.pprint(dataset.describe('alderman_votes'))
 ```{python}
 test_import('datadotworld', same_as = True)
 
-test_function('pprint.pprint', index = 2)
+test_function("datadotworld.load_dataset", not_called_msg = "Be sure to call `dw.load_dataset()`.",
+                             incorrect_msg = "You should call `dw.load_dataset()` as follows: `dw.load_dataset('https://data.world/stephen-hoover/chicago-city-council-votes')`.")
+
+msg = "Make sure to print out the metadata for `dataset` like this: `pp.pprint(dataset.describe())`."
+test_function("pprint.pprint", 1, incorrect_msg = msg)
+test_function("dataset.describe", 1, incorrect_msg = msg)
+
+msg = "Make sure to print out the metadata for the `alderman_votes` resource like this: `pp.pprint(dataset.describe('alderman_votes'))`."
+test_function('pprint.pprint', index = 2, incorrect_msg = msg)
+test_function("dataset.describe", 2, incorrect_msg = msg)
 
 success_msg('Great work!')
 ```
@@ -215,7 +224,15 @@ pp.pprint(votes_dataframe.head(3))
 ```{python}
 test_import('datadotworld', same_as = True)
 
-test_function('pprint.pprint', index = 2)
+msg = "You should load the `alderman_votes` dataframe as follows: `dataset.dataframes['alderman_votes']`."
+test_object("votes_dataframe", undefined_msg = msg, incorrect_msg = msg)
+
+msg = "Print the shape of the dataframe using `pp.pprint(votes_dataframe.shape)`."
+test_function("pprint.pprint", 1, incorrect_msg = msg)
+
+msg = "Make sure to print out the first 3 rows of the dataframe using `pp.pprint(votes_dataframe.head(3))`"
+test_function('pprint.pprint', 2, incorrect_msg = msg)
+test_function("votes_dataframe.head", 1, incorrect_msg = msg)
 
 success_msg('Great work!')
 ```

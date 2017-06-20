@@ -84,7 +84,18 @@ pp.pprint(unhcr2010.head(5))
 ```{python}
 test_import('datadotworld', same_as = True)
 
-#test_function('pprint.pprint', index = 2)
+msg = "Assign the following string to `sql_query` for your SQL statement: ```SELECT * FROM `unhcr_all` WHERE Year = 2010```"
+test_object("sql_query", undefined_msg = msg, incorrect_msg = msg)
+
+msg = "Assign the query results to `query2010` using `dw.query()` and pass your dataset URL and `sql_query` as the parameters."
+test_function("datadotworld.query", 1, incorrect_msg = msg)
+
+msg = "Create the `unhcr2010` dataframe using `query2010.dataframe`"
+test_object("unhcr2010", undefined_msg = msg, incorrect_msg = msg)
+
+msg = "Print the first 5 rows of `unhcr2010` using `pp.pprint(unhcr2010.head(5))`"
+test_function('pprint.pprint', 1, incorrect_msg = msg)
+test_function("unhcr2010.head", 1, incorrect_msg = msg)
 
 success_msg('Great work!')
 ```
@@ -200,7 +211,20 @@ plt.show()
 ```{python}
 test_import('datadotworld', same_as = True)
 
-#test_function('pprint.pprint', index = 2)
+msg = "Assign the following string to `sql_query` for your SQL statement: ```SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc```"
+test_object("sql_query", undefined_msg = msg, incorrect_msg = msg)
+
+msg = "Assign the query results to `queryResults` using `dw.query()` and pass `https://data.world/agriculture/national-farmers-markets` and `sql_query` as the parameters."
+test_function("datadotworld.query", 1, incorrect_msg = msg)
+
+msg = "Create the `stateStats` dataframe using `queryResults.dataframe`"
+test_object("stateStats", undefined_msg = msg, incorrect_msg = msg)
+
+msg = "Plot the `stateStats` results using `stateStats.plot(x='State')`"
+test_function('stateStats.plot', 1, incorrect_msg = msg)
+
+msg = "No need to remove `plt.show()` from the code. It's needed to print your plot!"
+test_function('matplotlib.pyplot.show', 1, incorrect_msg = msg, not_called_msg = msg)
 
 success_msg('Great work!')
 ```
@@ -283,7 +307,17 @@ pp.pprint(houseStark)
 ```{python}
 test_import('datadotworld', same_as = True)
 
-#test_function('pp.pprint', index = 1)
+msg = "No need to change or remove the predefied `sparql_query`! We've created this for you to use in the exercise."
+test_object("sparql_query", undefined_msg = msg, incorrect_msg = msg)
+
+msg = "Assign the query results to `queryResults` using `dw.query()` and pass `http://data.world/tutorial/sparqltutorial`, `sparql_query` and `query_type='sparql'` as the parameters."
+test_function("datadotworld.query", 1, incorrect_msg = msg)
+
+msg = "Create the `houseStark` dataframe using `queryResults.dataframe`"
+test_object("houseStark", undefined_msg = msg, incorrect_msg = msg)
+
+msg = "Be sure and print your dataframe using `pp.pprint(houseStark)`"
+test_function('pprint.pprint', 1, incorrect_msg = msg, not_called_msg = msg)
 
 success_msg('Great work!')
 ```
