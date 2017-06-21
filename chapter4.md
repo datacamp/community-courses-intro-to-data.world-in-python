@@ -14,15 +14,14 @@ Using the dataset at `https://data.world/nrippner/refugee-host-nations`, follow 
 
 
 *** =instructions
-- Write a SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
+- Complete the SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
 - Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/nrippner/refugee-host-nations` dataset. Assign the results to a `query2010` variable.
 - Use the dataframe property of the resulting query to create a dataframe variable named `unhcr2010`
 - Print the first 5 rows using the head method.
 
 *** =hint
 - It's a good idea to use backtics around the table name in case it has non-alpha characters in it.
-- For sql_query, just write out the SQL query as a string to assign to the variable.
-- Use the query ``SELECT * FROM `unhcr_all` WHERE Year = 2010``
+- For `sql_query`, just fill in the blank with the table name `unhcr_all`.
 - The query method is in the format `dw.query(dataset_url, sql_query)`
 - Assign the dataframe using this format: `____.dataframe`
 
@@ -49,8 +48,8 @@ with open(filename, 'w') as f:
 # datadotworld module has been imported as dw
 import datadotworld as dw
 
-## Write a SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
-sql_query = ___
+## Complete the SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
+sql_query = "SELECT * FROM `_____` WHERE Year = 2010"
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/nrippner/refugee-host-nations` dataset. Assign the results to a `query2010` variable.
 query2010 = ___
@@ -67,7 +66,7 @@ unhcr2010 = ___
 # datadotworld module has been imported as dw
 import datadotworld as dw
 
-## Write a SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
+## Complete the SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
 sql_query = "SELECT * FROM `unhcr_all` WHERE Year = 2010"
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/nrippner/refugee-host-nations` dataset. Assign the results to a `query2010` variable.
@@ -87,7 +86,7 @@ test_import('datadotworld', same_as = True)
 msg = "Assign the following string to `sql_query` for your SQL statement: ```SELECT * FROM `unhcr_all` WHERE Year = 2010```"
 test_object("sql_query", undefined_msg = msg, incorrect_msg = msg)
 
-msg = "Assign the query results to `query2010` using `dw.query()` and pass your dataset URL and `sql_query` as the parameters."
+msg = "Assign the query results to `query2010` using `dw.query()` and pass the dataset URL and `sql_query` as the parameters."
 test_function("datadotworld.query", 1, incorrect_msg = msg)
 
 msg = "Create the `unhcr2010` dataframe using `query2010.dataframe`"
@@ -134,7 +133,7 @@ len.`intelligence-of-dogs`.`dog_intelligence
 Now try a similar query on your own with a different set of datasets:
 
 *** =instructions
-- Write a federated SQL query that returns three columns: State, the count of farmers markets (FMID) per state, and the average adult obesity rate (`adult_obese`.`Value`) per state from the `Export` table in `https://data.world/agriculture/national-farmers-markets`, left joined with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014` on the `Export`.`State` and `adult_obese`.`Location` fields.
+- Complete the federated SQL query to return three columns: State, the count of farmers markets (FMID) per state, and the average adult obesity rate (`adult_obese`.`Value`) per state from the `Export` table in `https://data.world/agriculture/national-farmers-markets`, left joined with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014` on the `Export`.`State` and `adult_obese`.`Location` fields.
 - Execute the SQL query against `https://data.world/agriculture/national-farmers-markets` using the `query()` method
 - Create a `stateStats` dataframe from the results
 - Plot the `stateStats` results using State as the x-axis (matplotlib is already imported)
@@ -172,8 +171,8 @@ with open(filename, 'w') as f:
 # datadotworld module has been imported as dw
 import datadotworld as dw
 
-## Write a SQL query to select State, the count of farmers markets (FMID), and average obesity rate from agriculture.`national-farmers-markets`.Export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on State and Location
-sql_query = ___
+## Complete the SQL query to select State, the count of farmers markets (FMID), and average obesity rate from agriculture.`national-farmers-markets`.Export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on State and Location
+sql_query = "SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM ____ LEFT JOIN ____.`____`.`____` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc"
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/agriculture/national-farmers-markets` dataset. Assign the results to a `queryResults` variable.
 queryResults = ___
@@ -192,7 +191,7 @@ plt.show()
 # datadotworld module has been imported as dw
 import datadotworld as dw
 
-## Write a SQL query to select State, the count of farmers markets (FMID), and average obesity rate from agriculture.`national-farmers-markets`.Export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on State and Location
+## Complete the SQL query to select State, the count of farmers markets (FMID), and average obesity rate from agriculture.`national-farmers-markets`.Export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on State and Location
 sql_query = "SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc"
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/agriculture/national-farmers-markets` dataset. Assign the results to a `queryResults` variable.

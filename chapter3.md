@@ -21,8 +21,8 @@ After merging them together, add a new `citystate` field to your merged dataset,
 
 *** =hint
 - Make sure to use brackets to request the resources to return. Ex. `police_shootings = int_dataset.dataframes[____]`
-- Merge the datasets with `police_shootings.merge(____, how = 'left', left_on = ___, right_on=___)`
-- Create the new `citystate` field using `____["citystate"] = ____["city"] + "__" + ____["STATE_NAME"]`
+- Merge the datasets with `police_shootings.merge(____, how = 'left', left_on = ___, right_on=___)`. Fill in the blanks with the `state_abbrvs` dataframe and the `state` and `STUSAB` fields to match on.
+- Create the new `citystate` field using `____["citystate"] = ____["city"] + ", " + ____["STATE_NAME"]`. Fill in the blanks with the `merged_dataframe` dataframe.
 - Print the first 5 rows using the `head()` function using `pp.pprint`.
 
 *** =pre_exercise_code
@@ -56,7 +56,7 @@ fipsCodes_dataset = dw.load_dataset('https://data.world/uscensusbureau/fips-stat
 
 
 ## Merge the two datasets together on the state and STUSAB fields. Assign to a merged_dataframe variable.
-merged_dataframe = ___
+merged_dataframe = ____.____(____, how = 'left', left_on = '____', right_on='____')
 
 
 ## Add a 'citystate' column to the merged_dataframe dataframe, populating it with the concatinated values from the 'city' and 'STATE_NAME' columns, separated by ', '. 
