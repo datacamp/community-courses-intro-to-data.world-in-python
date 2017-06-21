@@ -10,7 +10,9 @@ Hello and welcome to the intro to data.world tutorial! At data.world, we're buil
 
 Open data is at the heart of data.world, and as such we want to make it as easy as possible to use data.world data in your environment of choice so you can do your work easier and solve real problems faster. 
 
-Which brings us to this tutorial where you’ll learn the different ways to connect to data.world using our Python SDK. Let’s start with the basics of loading the `datadotworld` library and pulling in a dataset to kick things off….
+Which brings us to this tutorial where you’ll learn the different ways to connect to data.world using our Python SDK. The data.world Python SDK will help you to easily load data, explore metadata, query datasets and even push your work back to data.world for storage and sharing. 
+
+Learn more at [https://data.world/integrations/python](https://data.world/integrations/python) and let’s start with the basics of loading the `datadotworld` library and pulling in a dataset to kick things off….
 
 *** =instructions
 - Import the `datadotworld` module as `dw`
