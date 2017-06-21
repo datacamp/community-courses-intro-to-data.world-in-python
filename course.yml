@@ -1,6 +1,6 @@
 title                : Intro to data.world in Python
 instructors          :
- - weston@datacamp.com
+ - rafael@data.world
 description          : data.world is a community where you can find interesting data, store and showcase your own data and data projects, and find and collaborate with other members. In addition to exploring, querying and charting data on the data.world site, you can access data via API endpoints and integrations. This course will demonstrate that using the data.world Python SDK to easily pull data and it's metadata into your environment.
 university           : DataCamp
 difficulty_level     : 2
