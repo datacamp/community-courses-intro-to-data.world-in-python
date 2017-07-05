@@ -133,7 +133,7 @@ len.`intelligence-of-dogs`.`dog_intelligence
 Now try a similar query on your own with a different set of datasets:
 
 *** =instructions
-- Complete the federated SQL query to return three columns: State, the count of farmers markets (FMID) per state, and the average adult obesity rate (`adult_obese`.`Value`) per state from the `Export` table in `https://data.world/agriculture/national-farmers-markets`, left joined with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014` on the `Export`.`State` and `adult_obese`.`Location` fields.
+- Complete the federated SQL query to return three columns: state, the count of farmers markets (fmid) per state, and the average adult obesity rate (`adult_obese`.`value`) per state from the `export` table in `https://data.world/agriculture/national-farmers-markets`, left joined with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014` on the `export`.`state` and `adult_obese`.`location` fields.
 - Execute the SQL query against `https://data.world/agriculture/national-farmers-markets` using the `query()` method
 - Create a `stateStats` dataframe from the results
 - Plot the `stateStats` results using State as the x-axis (matplotlib is already imported)
@@ -142,9 +142,9 @@ Now try a similar query on your own with a different set of datasets:
 *** =hint
 - Here's the query you can use 
 ``
-SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc``
+SELECT state, count(fmid) as count, Avg(obesity.value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON state = obesity.location GROUP BY state ORDER BY count desc``
 - To execute the query use `queryResults = dw.query(____, _____)`
-- To plot the results, use `stateStats.plot(x='State')`
+- To plot the results, use `stateStats.plot(x='state')`
 
 *** =pre_exercise_code
 ```{python}
@@ -171,8 +171,8 @@ with open(filename, 'w') as f:
 # datadotworld module has been imported as dw
 import datadotworld as dw
 
-## Complete the SQL query to select State, the count of farmers markets (FMID), and average obesity rate from agriculture.`national-farmers-markets`.Export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on State and Location
-sql_query = "SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM ____ LEFT JOIN ____.`____`.`____` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc"
+## Complete the SQL query to select state, the count of farmers markets (fmid), and average obesity rate from agriculture.`national-farmers-markets`.export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on state and location
+sql_query = "SELECT state, count(fmid) as count, Avg(obesity.value) as obesityAvg FROM ____ LEFT JOIN ____.`____`.`____` as obesity ON state = obesity.location GROUP BY state ORDER BY count desc"
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/agriculture/national-farmers-markets` dataset. Assign the results to a `queryResults` variable.
 queryResults = ___
@@ -180,7 +180,7 @@ queryResults = ___
 ## Use the dataframes property of the resulting query to create a dataframe variable named `stateStats`
 stateStats = ___
 
-## Plot the stateStats results using State as the x-axis (matplotlib is already imported)
+## Plot the stateStats results using state as the x-axis (matplotlib is already imported)
 ____.plot(x=____)
 
 plt.show()
@@ -191,8 +191,8 @@ plt.show()
 # datadotworld module has been imported as dw
 import datadotworld as dw
 
-## Complete the SQL query to select State, the count of farmers markets (FMID), and average obesity rate from agriculture.`national-farmers-markets`.Export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on State and Location
-sql_query = "SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc"
+## Complete the SQL query to select state, the count of farmers markets (fmid), and average obesity rate from agriculture.`national-farmers-markets`.export, LEFT JOINED against health.`obesity-by-state-2014`.adult_obese on state and location
+sql_query = "SELECT state, count(fmid) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON state = obesity.location GROUP BY state ORDER BY count desc"
 
 ## Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/agriculture/national-farmers-markets` dataset. Assign the results to a `queryResults` variable.
 queryResults = dw.query('https://data.world/agriculture/national-farmers-markets', sql_query)
@@ -200,8 +200,8 @@ queryResults = dw.query('https://data.world/agriculture/national-farmers-markets
 ## Use the dataframes property of the resulting query to create a dataframe variable named `stateStats`
 stateStats = queryResults.dataframe
 
-## Plot the stateStats results using State as the x-axis (matplotlib is already imported)
-stateStats.plot(x='State')
+## Plot the stateStats results using state as the x-axis (matplotlib is already imported)
+stateStats.plot(x='state')
 
 plt.show()
 ```
@@ -210,7 +210,7 @@ plt.show()
 ```{python}
 test_import('datadotworld', same_as = True)
 
-msg = "Assign the following string to `sql_query` for your SQL statement: ```SELECT State, count(FMID) as count, Avg(obesity.Value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON State = obesity.Location GROUP BY State ORDER BY count desc```"
+msg = "Assign the following string to `sql_query` for your SQL statement: ```SELECT state, count(FMID) as count, Avg(obesity.value) as obesityAvg FROM export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON state = obesity.location GROUP BY state ORDER BY count desc```"
 test_object("sql_query", undefined_msg = msg, incorrect_msg = msg)
 
 msg = "Assign the query results to `queryResults` using `dw.query()` and pass `https://data.world/agriculture/national-farmers-markets` and `sql_query` as the parameters."
@@ -219,7 +219,7 @@ test_function("datadotworld.query", 1, incorrect_msg = msg)
 msg = "Create the `stateStats` dataframe using `queryResults.dataframe`"
 test_object("stateStats", undefined_msg = msg, incorrect_msg = msg)
 
-msg = "Plot the `stateStats` results using `stateStats.plot(x='State')`"
+msg = "Plot the `stateStats` results using `stateStats.plot(x='state')`"
 test_function('stateStats.plot', 1, incorrect_msg = msg)
 
 msg = "No need to remove `plt.show()` from the code. It's needed to print your plot!"
@@ -273,7 +273,7 @@ with open(filename, 'w') as f:
 import datadotworld as dw
 
 # We've written a SPARQL query for you and assigned it to the `sparql_query` variable: 
-sparql_query = "PREFIX GOT: <http://data.world/tutorial/sparqltutorial/GOT.csv/GOT#> SELECT ?FName ?LName WHERE {?person GOT:House \"Stark\" . ?person GOT:FName ?FName . ?person GOT:LName ?LName .}"
+sparql_query = "PREFIX GOT: <https://tutorial.linked.data.world/d/sparqltutorial/> SELECT ?FName ?LName WHERE {?person GOT:col-got-house \"Stark\" . ?person GOT:col-got-fname ?FName . ?person GOT:col-got-lname ?LName .}"
 
 # Use the pre-defined SPARQL query to query dataset http://data.world/tutorial/sparqltutorial and return the results to a queryResults variable
 
@@ -289,7 +289,7 @@ sparql_query = "PREFIX GOT: <http://data.world/tutorial/sparqltutorial/GOT.csv/G
 import datadotworld as dw
 
 # We've written a SPARQL query for you and assigned it to the `sparql_query` variable: 
-sparql_query = "PREFIX GOT: <http://data.world/tutorial/sparqltutorial/GOT.csv/GOT#> SELECT ?FName ?LName WHERE {?person GOT:House \"Stark\" . ?person GOT:FName ?FName . ?person GOT:LName ?LName .}"
+sparql_query = "PREFIX GOT: <https://tutorial.linked.data.world/d/sparqltutorial/> SELECT ?FName ?LName WHERE {?person GOT:col-got-house \"Stark\" . ?person GOT:col-got-fname ?FName . ?person GOT:col-got-lname ?LName .}"
 
 # Use the pre-defined SPARQL query to query dataset http://data.world/tutorial/sparqltutorial and return the results to a queryResults variable
 queryResults = dw.query('http://data.world/tutorial/sparqltutorial', sparql_query, query_type='sparql')
