@@ -1,8 +1,17 @@
 ---
-title       : Querying with data.world
-description : Querying with data.world
---- type:NormalExercise lang:python xp:100 skills:2 key:27cbaefdc0
+title: 'Querying with data.world'
+description: 'Querying with data.world'
+---
+
 ## SQL: Querying a table
+
+```yaml
+type: NormalExercise
+key: 27cbaefdc0
+lang: python
+xp: 100
+skills: 2
+```
 
 Another way to pull data in from data.world is to use the `query()` method of the datadotworld module. `query()` lets you use SQL or SPARQL to query one or more datasets, and takes a dataset URL and the query string as parameters. This makes it easy for you to pull in exactly what fields and aggregations you need from the data, and even lets you get joined tables with a single call to data.world. 
 
@@ -12,20 +21,19 @@ SQL on data.world is actually a dialect we've created called *dwSQL*. *dwSQL* do
 
 Using the dataset at `https://data.world/nrippner/refugee-host-nations`, follow the instructions below:
 
-
-*** =instructions
+`@instructions`
 - Complete the SQL query to select all rows from the `unhcr_all` table where `Year` equals 2010. Assign the query string to a `sql_query` variable.
 - Use the `query` method of the datadotworld module to run the `sql_query` against the `https://data.world/nrippner/refugee-host-nations` dataset. Assign the results to a `query2010` variable.
 - Use the dataframe property of the resulting query to create a dataframe variable named `unhcr2010`
 - Print the first 5 rows using the head method.
 
-*** =hint
+`@hint`
 - It's a good idea to use backtics around the table name in case it has non-alpha characters in it.
 - For `sql_query`, just fill in the blank with the table name `unhcr_all`.
 - The query method is in the format `dw.query(dataset_url, sql_query)`
 - Assign the dataframe using this format: `____.dataframe`
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -43,7 +51,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -61,7 +69,7 @@ unhcr2010 = ___
 
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -79,7 +87,7 @@ unhcr2010 = query2010.dataframe
 pp.pprint(unhcr2010.head(5))
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 
@@ -99,9 +107,17 @@ test_function("unhcr2010.head", 1, incorrect_msg = msg)
 success_msg('Great work!')
 ```
 
+---
 
---- type:NormalExercise lang:python xp:100 skills:2 key:a851333ad8
 ## SQL: Query multiple tables
+
+```yaml
+type: NormalExercise
+key: a851333ad8
+lang: python
+xp: 100
+skills: 2
+```
 
 Not only can you create very specific queries against a single table on data.world, you can also write queries against multiple tables within a single dataset or across many datasets! 
 
@@ -132,21 +148,20 @@ len.`intelligence-of-dogs`.`dog_intelligence
 
 Now try a similar query on your own with a different set of datasets:
 
-*** =instructions
+`@instructions`
 - Complete the federated SQL query to return three columns: state, the count of farmers markets (fmid) per state, and the average adult obesity rate (`adult_obese`.`value`) per state from the `export` table in `https://data.world/agriculture/national-farmers-markets`, left joined with the `adult_obese` table in `https://data.world/health/obesity-by-state-2014` on the `export`.`state` and `adult_obese`.`location` fields.
 - Execute the SQL query against `https://data.world/agriculture/national-farmers-markets` using the `query()` method
 - Create a `stateStats` dataframe from the results
 - Plot the `stateStats` results using State as the x-axis (matplotlib is already imported)
 
-
-*** =hint
+`@hint`
 - Here's the query you can use 
 ``
 SELECT state, count(fmid) as count, Avg(obesity.value) as obesityAvg FROM Export LEFT JOIN health.`obesity-by-state-2014`.`adult_obese` as obesity ON state = obesity.location GROUP BY state ORDER BY count desc``
 - To execute the query use `queryResults = dw.query(____, _____)`
 - To plot the results, use `stateStats.plot(x='state')`
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -166,7 +181,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -186,7 +201,7 @@ ____.plot(x=____)
 plt.show()
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -206,7 +221,7 @@ stateStats.plot(x='state')
 plt.show()
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 
@@ -228,9 +243,17 @@ test_function('matplotlib.pyplot.show', 1, incorrect_msg = msg, not_called_msg =
 success_msg('Great work!')
 ```
 
+---
 
---- type:NormalExercise lang:python xp:100 skills:2 key:27858032c6
 ## SPARQL: Querying linked data
+
+```yaml
+type: NormalExercise
+key: 27858032c6
+lang: python
+xp: 100
+skills: 2
+```
 
 Behind the scenes, data.world is converting all tabular data files into linked data using Semantic Web technolgies. This allows you to upload any tabular format, like xlsx, csv, tsv or json, and instantly be able to query and join them without issue. SQL is great for this, but SPARQL - which is the query language for linked data - can be more robust and flexible than SQL, allowing for more complex queries. 
 
@@ -238,18 +261,17 @@ We won't cover all that SPARQL can do here, but get to know it through our [tuto
 
 Let's give it a shot...
 
-*** =instructions
+`@instructions`
 - Use the pre-defined SPARQL query to query dataset `http://data.world/tutorial/sparqltutorial` and return the results to a `queryResults` variable.
 - Create a `houseStark` dataframe.
 - Use `pp.pprint` to print the dataframe to the screen.
 
-*** =hint
+`@hint`
 - Don't forget to pass `query_type='sparql'` as a query parameter.
 - Use the format `dw.query(____, ____, query_type=____)`
 - Print the dataframe using `pp.pprint(____)`
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -267,7 +289,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -283,7 +305,7 @@ sparql_query = "PREFIX GOT: <https://tutorial.linked.data.world/d/sparqltutorial
 
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -302,7 +324,7 @@ pp.pprint(houseStark)
 
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 

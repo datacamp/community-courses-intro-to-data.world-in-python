@@ -1,9 +1,17 @@
 ---
-title       : Wrap up & next steps
-description : Setup your own data.world account and apply what you've learned and more!
+title: 'Wrap up & next steps'
+description: 'Setup your own data.world account and apply what you''ve learned and more!'
+---
 
---- type:NormalExercise lang:python xp:100 skills:2 key:d55f0708ee
 ## Wrap up & next steps
+
+```yaml
+type: NormalExercise
+key: d55f0708ee
+lang: python
+xp: 100
+skills: 2
+```
 
 Congrats! You now know multiple ways of pulling data from data.world into your local environment using our Python SDK. But don't stop there! The Python SDK has additional functionality for uploading and modifying data for easy storage as well as sharing and collaborating with other members. 
 
@@ -23,17 +31,17 @@ Download the notebook [here](https://query.data.world/s/59dlfssv3zwf1k2l8k18gg9z
 
 We've also included one final code example here that shows some more ways to inspect a dataset, so check it out and just click submit to finish the course. We hope you enjoyed it!
 
-*** =instructions
+`@instructions`
 - Setup your data.world account at `https://data.world/`.
 - Install the datadotworld Python package to your local machine using `pip install datadotworld[pandas]`.
 - Download the [jupyter notebook](https://query.data.world/s/59dlfssv3zwf1k2l8k18gg9z3) to quickly apply the things you've learned in this tutorial.
 - Use data.world to find more interesting data, store and share your own data and projects, and collaborate with other community members!
 - Just click submit to complete the course.
 
-*** =hint
+`@hint`
 - The exercise is complete example code, so no work is needed! Just review and click submit to finish the course.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -51,7 +59,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # Import the datadotworld module as dw and the sys module
 import datadotworld as dw
@@ -79,7 +87,7 @@ for r in resources:
 
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # Import the datadotworld module as dw and the sys module
 import datadotworld as dw
@@ -106,7 +114,7 @@ for r in resources:
     pp.pprint(r['format'])
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 
