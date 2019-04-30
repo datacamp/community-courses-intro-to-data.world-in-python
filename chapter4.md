@@ -89,20 +89,25 @@ pp.pprint(unhcr2010.head(5))
 
 `@sct`
 ```{python}
-test_import('datadotworld', same_as = True)
+Ex().has_import('datadotworld', same_as = True)
 
 msg = "Assign the following string to `sql_query` for your SQL statement: ```SELECT * FROM `unhcr_all` WHERE Year = 2010```"
-test_object("sql_query", undefined_msg = msg, incorrect_msg = msg)
+Ex().check_object("sql_query", missing_msg = msg).has_equal_value(incorrect_msg = msg)
 
 msg = "Assign the query results to `query2010` using `dw.query()` and pass the dataset URL and `sql_query` as the parameters."
-test_function("datadotworld.query", 1, incorrect_msg = msg)
+Ex().check_function("datadotworld.query").multi(
+  check_args(0).has_equal_ast(incorrect_msg = msg),
+  check_args(1).has_equal_value(incorrect_msg = msg)
+)
 
 msg = "Create the `unhcr2010` dataframe using `query2010.dataframe`"
-test_object("unhcr2010", undefined_msg = msg, incorrect_msg = msg)
+Ex().check_df("unhcr2010", missing_msg = msg).has_equal_value(incorrect_msg = msg)
 
 msg = "Print the first 5 rows of `unhcr2010` using `pp.pprint(unhcr2010.head(5))`"
-test_function('pprint.pprint', 1, incorrect_msg = msg)
-test_function("unhcr2010.head", 1, incorrect_msg = msg)
+Ex().check_correct(
+  check_function('pprint.pprint').check_args(0).has_equal_value(incorrect_msg = msg),
+  check_function("unhcr2010.head").check_args(0).has_equal_value(incorrect_msg = msg)
+)
 
 success_msg('Great work!')
 ```
