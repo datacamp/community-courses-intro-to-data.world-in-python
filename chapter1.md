@@ -2,6 +2,7 @@
 title: Introduction
 description: 'Introduction to data.world'
 attachments: null
+free_preview: true
 ---
 
 ## Introduction
