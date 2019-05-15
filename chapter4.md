@@ -101,7 +101,7 @@ Ex().check_function("datadotworld.query").multi(
 )
 
 msg = "Create the `unhcr2010` dataframe using `query2010.dataframe`"
-Ex().check_df("unhcr2010", missing_msg = msg).has_equal_value(incorrect_msg = msg)
+Ex().check_object("unhcr2010", missing_msg = msg).has_equal_value(incorrect_msg = msg)
 
 msg = "Print the first 5 rows of `unhcr2010` using `pp.pprint(unhcr2010.head(5))`"
 Ex().check_correct(
