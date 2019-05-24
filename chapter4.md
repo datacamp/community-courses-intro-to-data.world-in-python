@@ -100,14 +100,11 @@ Ex().check_function("datadotworld.query").multi(
   check_args(1).has_equal_value(incorrect_msg = msg)
 )
 
-msg = "Create the `unhcr2010` dataframe using `query2010.dataframe`"
-Ex().check_df("unhcr2010", missing_msg = msg).multi(
-  check_keys('year').has_equal_value(incorrect_msg = msg),
-  check_keys('origin').has_equal_value(incorrect_msg = msg),
-  check_keys('asylum_seekers_pending_cases').has_equal_value(incorrect_msg = msg),
-  check_keys('stateless_persons').has_equal_value(incorrect_msg = msg),
-  check_keys('total_population').has_equal_value(incorrect_msg = msg)
+Ex().check_correct(
+  has_equal_value(expr_code = "unhcr2010", incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?"),
+  check_object("unhcr2010")
 )
+
 
 msg = "Print the first 5 rows of `unhcr2010` using `pp.pprint(unhcr2010.head(5))`"
 Ex().check_correct(
