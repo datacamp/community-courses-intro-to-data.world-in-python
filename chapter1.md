@@ -1,10 +1,19 @@
 ---
-title       : Introduction
-description : Introduction to data.world
-attachments :
+title: Introduction
+description: 'Introduction to data.world'
+attachments: null
+free_preview: true
+---
 
---- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
 ## Introduction
+
+```yaml
+type: NormalExercise
+key: f29011ea21
+lang: python
+xp: 100
+skills: 1
+```
 
 Hello and welcome to the intro to data.world tutorial! At data.world, we're building the most meaningful, collaborative, and abundant data resource in the world by breaking down the barriers between data and people. Join data.world to find interesting data and understand it at a glance, store and showcase your own data and data projects, as well as find and collaborate with others. 
 
@@ -14,16 +23,16 @@ Which brings us to this tutorial where you’ll learn the different ways to conn
 
 Learn more at [https://data.world/integrations/python](https://data.world/integrations/python) and let’s start with the basics of loading the `datadotworld` library and pulling in a dataset to kick things off….
 
-*** =instructions
+`@instructions`
 - Import the `datadotworld` module as `dw`
 - Use the `load_dataset` method to assign `stephen-hoover/chicago-city-council-votes` to a `dataset` variable.
 
-*** =hint
+`@hint`
 - Just fill in the blanks with the provided values:
 - Use `import ___ as ___` to import `datadotworld` as `dw`.
-- Use `dataset = dw.load_dataset(___)` to import `stephen-hoover/chicago-city-council-votes`. Don't forget apostrophes around the dataset value! 
+- Use `dataset = dw.load_dataset(___)` to import `stephen-hoover/chicago-city-council-votes`. Don't forget apostrophes around the dataset value!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -41,7 +50,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # Import the datadotworld module as dw
 import ___ as ___
@@ -50,7 +59,7 @@ import ___ as ___
 dataset = dw.___(___)
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # Import the datadotworld module as dw
 import datadotworld as dw
@@ -59,7 +68,7 @@ import datadotworld as dw
 dataset = dw.load_dataset('stephen-hoover/chicago-city-council-votes')
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 

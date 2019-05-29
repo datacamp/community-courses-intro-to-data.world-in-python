@@ -1,9 +1,17 @@
 ---
-title       : Working with multiple datasets
-description : Working with multiple datasets
+title: 'Working with multiple datasets'
+description: 'Working with multiple datasets'
+---
 
---- type:NormalExercise lang:python xp:100 skills:2 key:be733d3f8a
 ## Working with multiple datasets
+
+```yaml
+type: NormalExercise
+key: be733d3f8a
+lang: python
+xp: 100
+skills: 2
+```
 
 You can load as many different datasets as you’d like from data.world and work with them together. Here we’ve used the `load_dataset` method to bring in two separate datasets, assigning them each to a variable. 
 
@@ -11,21 +19,20 @@ We’ll leave it to you to create a dataframe for each using the `dataframes` pr
 
 After merging them together, add a new `citystate` field to your merged dataset, populating it with the concatenated values of the `city` and `state_name` fields, separated by `, ` resulting in a `city, state` format.
 
-
-*** =instructions
+`@instructions`
 - Create a `police_shootings` dataframe from the `fatal_police_shootings_data` table in `int_dataset`
 - Create a `state_abbrvs` dataframe from the `statesfipscodes` table in `fipsCodes_dataset`
 - Merge the two dataframes together on the `state` and `stusab` fields using the merge() function. Assign to `merged_dataframe`.
 - Add a `citystate` column to your merged dataframe, populating it with the concatinated values from the `city` and `state_name` columns, separated by ', '. 
 - Print first 5 rows of merged dataframe
 
-*** =hint
+`@hint`
 - Make sure to use brackets to request the resources to return. Ex. `police_shootings = int_dataset.dataframes[____]`
 - Merge the datasets with `police_shootings.merge(____, how = 'left', left_on = ___, right_on=___)`. Fill in the blanks with the `state_abbrvs` dataframe and the `state` and `stusab` fields to match on.
 - Create the new `citystate` field using `____["citystate"] = ____["city"] + ", " + ____["state_name"]`. Fill in the blanks with the `merged_dataframe` dataframe.
 - Print the first 5 rows using the `head()` function using `pp.pprint`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -43,7 +50,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -67,7 +74,7 @@ merged_dataframe = ____.____(____, how = 'left', left_on = '____', right_on='___
 
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # datadotworld module has been imported as dw
 import datadotworld as dw
@@ -92,7 +99,7 @@ pp.pprint(merged_dataframe.head(5))
 
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 

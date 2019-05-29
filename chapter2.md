@@ -1,10 +1,18 @@
 ---
-title       : Working with datasets
-description : Working with data.world datasets
-attachments :
+title: 'Working with datasets'
+description: 'Working with data.world datasets'
+attachments: null
+---
 
---- type:NormalExercise lang:python xp:100 skills:1 key:f29011ea21
 ## Working with datasets
+
+```yaml
+type: NormalExercise
+key: f29011ea21
+lang: python
+xp: 100
+skills: 1
+```
 
 Datasets on data.world can be referenced by their full URL, or as we saw in the previous exercise, a portion of the URL that makes it's unique path or dataset key. We could have just as easily used `https://data.world/stephen-hoover/chicago-city-council-votes` in place of `stephen-hoover/chicago-city-council-votes` when loading our dataset with `load_dataset()`. We'll use the full URL for the rest of the tutorial, but this shorter 'dataset key' will be good to know for queries and APIs later on.
 
@@ -12,19 +20,19 @@ Datasets on data.world start with one or more files (including tabular data, doc
 
 In addition, data.world will analyze the data and attempt to extract a schema for all tabular files (CSVs). Use the same `describe()` function to get the metadata for a particular table (csv resource) by passing it as a parameter.
 
-*** =instructions
+`@instructions`
 - Import the `datadotworld` module as `dw`
 - Use the `load_dataset` method to assign `https://data.world/stephen-hoover/chicago-city-council-votes` to a `dataset` variable (notice that this time we're using the full URL).
 - Use the `describe()` function of the dataset object to print all the metadata that is downloaded with the dataset.
 - Use the same `describe()` function again, but now, use it to print a description of a specific resource: `alderman_votes`.
 
-*** =hint
+`@hint`
 - Use `import ___ as ___` to import `datadotworld` as `dw`.
 - Use `dataset = dw.load_dataset(___)` to import `https://data.world/stephen-hoover/chicago-city-council-votes`.
 - Print the dataset's metadata with `pp.pprint(dataset.describe())`
 - Use `pp.pprint(dataset.describe(_____))` to print the `alderman_votes` metadata
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -42,7 +50,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # Import the datadotworld module as dw
 
@@ -58,7 +66,7 @@ pp.pprint(___)
 
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # Import the datadotworld module as dw
 import datadotworld as dw
@@ -73,7 +81,7 @@ pp.pprint(dataset.describe())
 pp.pprint(dataset.describe('alderman_votes'))
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 
@@ -91,9 +99,17 @@ test_function("dataset.describe", 2, incorrect_msg = msg)
 success_msg('Great work!')
 ```
 
+---
 
---- type:MultipleChoiceExercise lang:python xp:50 skills:2 key:4c1d2c0e03
 ## Reading the metadata
+
+```yaml
+type: MultipleChoiceExercise
+key: 4c1d2c0e03
+lang: python
+xp: 50
+skills: 2
+```
 
 We've assigned the output of the previous exercise to an `alderman_votes` variable: 
 
@@ -103,17 +119,17 @@ In the iPython shell to the right, print the value by typing `alderman_votes`.
 
 Based on the output, how many fields does the `alderman_votes` resource have?
 
-*** =instructions
+`@possible_answers`
 - 1
 - 3
 - 5
 - 16
 
-*** =hint
+`@hint`
 - Each field is an element in the `fields` array within the `schema` element. Each field will be surrournded by `{}`.
-- You can also use `len(alderman_votes['schema']['fields'])` to count the field elements. 
+- You can also use `len(alderman_votes['schema']['fields'])` to count the field elements.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -141,7 +157,7 @@ alderman_votes = dataset.describe('alderman_votes')
 
 ```
 
-*** =sct
+`@sct`
 ```{python}
 msg1 = "Try again! Count each element within `'schema': {'fields': [` and `]}`. Each field will be surrounded by `{` and `}`"
 msg2 = "Try again! Count each element within `'schema': {'fields': [` and `]}`. Each field will be surrounded by `{` and `}`"
@@ -150,8 +166,17 @@ msg4 = "Nope. Just count each element within `'schema': {'fields': [` and `]}`. 
 test_mc(correct = 3, msgs = (msg1,msg2,msg3,msg4))
 ```
 
---- type:NormalExercise lang:python xp:100 skills:2 key:943dd4c4ef
+---
+
 ## Accessing the data
+
+```yaml
+type: NormalExercise
+key: 943dd4c4ef
+lang: python
+xp: 100
+skills: 2
+```
 
 Now that you know how to load a dataset object and explore it's metadata, you'll have access to three properties that let you access the data: `raw_data`, `tables`, and `dataframes`. 
 
@@ -159,17 +184,16 @@ Each of these returns a dictionary of values, just in different formats: `bytes`
 
 Let's practice creating a dataframe from a specific table in our dataset. Note that `datadotworld` is already imported and the `dataset` variable has been created with `load_dataset`:
 
-*** =instructions
+`@instructions`
 - Use the `dataframes` property to assign the `alderman_votes` table to the variable `votes_dataframe`.
 - Explore the data by printing out the dataframe's `shape` and first 3 rows.
 
-*** =hint
+`@hint`
 - Make sure to use brackets to request the resources to return. Ex. `dataset.dataframes[______]`
 - Print the table's shape using `pp.pprint(____.shape)`
-- Use `pp.pprint(_____.head(_))` to print the first 3 rows. 
+- Use `pp.pprint(_____.head(_))` to print the first 3 rows.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 import pprint as pp
 import os
@@ -187,7 +211,7 @@ with open(filename, 'w') as f:
     f.close()
 ```
 
-*** =sample_code
+`@sample_code`
 ```{python}
 # The datadotworld module and dataset have already been loaded for you:
 import datadotworld as dw
@@ -203,7 +227,7 @@ pp.pprint(___)
 
 ```
 
-*** =solution
+`@solution`
 ```{python}
 # The datadotworld module and dataset have already been loaded for you:
 import datadotworld as dw
@@ -220,7 +244,7 @@ pp.pprint(votes_dataframe.head(3))
 
 ```
 
-*** =sct
+`@sct`
 ```{python}
 test_import('datadotworld', same_as = True)
 
