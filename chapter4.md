@@ -100,10 +100,11 @@ Ex().check_function("datadotworld.query").multi(
   check_args(1).has_equal_value(incorrect_msg = msg)
 )
 
-Ex().multi(
-  check_object("unhcr2010"),
-  has_equal_value(incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?")
-)
+Ex().check_df("unhcr2010").has_equal_value()
+# Ex().multi(
+#   check_object("unhcr2010"),
+#   has_equal_value(incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?")
+# )
 
 
 msg = "Print the first 5 rows of `unhcr2010` using `pp.pprint(unhcr2010.head(5))`"
