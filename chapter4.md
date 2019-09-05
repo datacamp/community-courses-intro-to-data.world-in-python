@@ -102,7 +102,7 @@ Ex().check_function("datadotworld.query").multi(
 
 Ex().multi(
   check_object("unhcr2010"),
-  has_equal_value(expr_code = "unhcr2010", incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?")
+  has_equal_value(incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?")
 )
 
 
