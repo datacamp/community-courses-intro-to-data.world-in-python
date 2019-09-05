@@ -100,11 +100,9 @@ Ex().check_function("datadotworld.query").multi(
   check_args(1).has_equal_value(incorrect_msg = msg)
 )
 
-Ex().check_df("unhcr2010").multi(
-  check_keys('year', missing_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?").has_equal_value(append = True, incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?"),
-  check_keys('origin', missing_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?").has_equal_value(append = True, incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?"),
-  check_keys('refugees_incl_refugee_like_situations', missing_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?").has_equal_value(append = True, incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?"),
-  check_keys('total_population', missing_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?").has_equal_value(append = True, incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?")
+Ex().multi(
+  check_df("unhcr2010"),
+  has_equal_ast(code = "unhcr2010 = query2010.dataframe", incorrect_msg = "Did you convert `query2010` to a dataframe and assign the result to `unhcr2010`?")
 )
 
 
